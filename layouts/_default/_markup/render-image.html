@@ -1,0 +1,13 @@
+{{- $alt := .Text | default "" -}}
+{{- $title := .Title -}}
+{{- $dest := .Destination -}}
+{{- $url := urls.Parse $dest -}}
+{{- if $url.IsAbs -}}
+<img src="{{ $dest | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}>
+{{- else -}}
+{{- $path := $dest -}}
+{{- if hasPrefix $path "/" -}}
+{{- $path = strings.TrimPrefix "/" $path -}}
+{{- end -}}
+<img src="{{ $path | relURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}>
+{{- end -}}
