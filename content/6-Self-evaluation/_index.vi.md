@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong suốt thời gian thực tập tại **Công ty TNHH Amazon Web Services Vietnam** từ **17/04/2026** đến **17/06/2026**, tôi có cơ hội tham gia môi trường làm việc chuyên nghiệp và tiếp cận quy trình triển khai nội dung theo chuẩn doanh nghiệp. Việc học trên lớp được kết nối trực tiếp với thực tế thông qua các đầu việc có tiến độ rõ ràng, có mục tiêu theo từng tuần và có đánh giá kết quả cụ thể.
+Trong suốt thời gian thực tập tại **Công ty TNHH Amazon Web Services Vietnam** từ **17/04/2026** đến **17/07/2026**, tôi có cơ hội tham gia môi trường làm việc chuyên nghiệp và tiếp cận quy trình triển khai nội dung theo chuẩn doanh nghiệp. Việc học trên lớp được kết nối trực tiếp với thực tế thông qua các đầu việc có tiến độ rõ ràng, có mục tiêu theo từng tuần và có đánh giá kết quả cụ thể.
 
 Trong kỳ thực tập, tôi tập trung vào các nhóm công việc chính gồm: xây dựng worklog theo tuần, nghiên cứu và biên soạn nội dung workshop về Amazon S3 trong mô hình kết nối VPC và môi trường giả lập on-premises, đồng thời dịch và chuẩn hóa một số bài blog kỹ thuật. Thông qua quá trình này, tôi cải thiện đáng kể các kỹ năng **phân tích yêu cầu**, **tổ chức tài liệu kỹ thuật**, **trình bày nội dung có cấu trúc**, **sử dụng dịch vụ AWS ở mức thực hành**, và **giao tiếp trong bối cảnh làm việc nhóm**.
 
