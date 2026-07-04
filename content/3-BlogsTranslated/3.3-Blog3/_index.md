@@ -5,118 +5,49 @@ weight: 1
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Generating 3D Models from 2D Images using AI on AWS
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+![3D Model Generation with AI](Blog3_photo.jpg)
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+## 1. Proposed Architecture Overview
 
----
+To balance graphics processing performance (GPU) and costs, our workflow is divided into two primary computing stages connected via Amazon S3 storage:
 
-## Architecture Guidance
+*   **Amazon S3 (Central Storage):** Stores the initial 2D concept drawings and output `.glb` files (3D objects) generated at each step.
+*   **Step 1 - Mesh Generation (Amazon EC2 g4dn.2xlarge):** Uses `g4dn` instances equipped with Nvidia GPUs. The instance downloads the image from S3, uses the **TripoSG** model to compute and generate the basic geometry mesh, and pushes the file back to S3.
+*   **Step 2 - Texture Generation and Projection (Amazon EC2 g6e.2xlarge):** The multi-view texturing phase requires massive vRAM. The **MV-Adapter** model uses the original 2D image as a reference to project multi-angle textures onto the mesh generated in Step 1.
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+## 2. Practical Implementation & Cost Optimization
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+The first step is setting up the network infrastructure and selecting the correct Amazon Machine Image (AMI). Developers should utilize Deep Learning AMIs (pre-installed with CUDA and PyTorch) to save time configuring the environment.
 
-**The solution architecture is now as follows:**
+> [!TIP]
+> **Cost Optimization Pro-Tip:** GPU-powered EC2 instances like `g4dn` or `g6e` are expensive hourly resources. If you are an IT student or junior developer, actively participate in events like the "Platform First Cloud AI Journey Bootcamp" or AWS Vietnam workshops. Completing tasks to receive 100 AWS credits provides ample budget to test these instances during R&D without burning a hole in your pocket.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+### Launching the Environment and Fixing Mesh Errors
 
----
+When using MV-Adapter for texturing, a common technical issue is that AI-generated meshes (from Tripo) sometimes suffer from "non-manifold" geometry (invalid self-intersecting faces or open holes).
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+To prevent the pipeline from crashing, we need a script to repair the mesh directly on the EC2 instance before texturing:
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+```bash
+python fix_manifold.py inputs/raw_model.glb inputs/manifold_model.glb
+```
 
----
+Then, run the texture generation command:
 
-## Technology Choices and Communication Scope
+```bash
+python -m scripts.texture_i2tex --image inputs/concept.jpeg --mesh inputs/manifold_model.glb --save_dir outputs --remove_bg
+```
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+## 3. Bringing AI Assets into the Game Engine (The Final Piece)
 
----
+Many tutorials stop after creating the `.glb` file, treating it as the end goal. However, for a Game Developer, that is just raw material. AI-generated files often have unoptimized polygon counts and, naturally, lack a skeletal rig.
 
-## The Pub/Sub Hub
+We need tools like **Blender** to optimize the model and add a skeleton (e.g., using the **"Rigify"** plugin). Additionally, you can upload the model to **Mixamo** to auto-rig it and apply existing animations available on the platform.
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+## 4. Conclusion
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+Using open-source AI models like TripoSG and MV-Adapter on AWS EC2 grants you complete ownership of the 3D asset generation process without being limited by external APIs. While current AI outputs cannot fully replace professional 3D artists, they serve as a powerful tool during prototyping. Automating this step saves developers countless hours, allowing them to focus on what matters most: gameplay design and script logic.
 
----
-
-## Core Microservice
-
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
-
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
-
----
-
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
-
----
-
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+**Reference Source:** <https://aws.amazon.com/blogs/gametech/open-source-3d-game-asset-generation-using-aws>

@@ -7,47 +7,24 @@ pre: " <b> 1.6. </b> "
 ---
 ### Mục tiêu tuần 6:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Triển khai hệ thống cơ sở dữ liệu Managed DB (RDS/Aurora), kho phân tích Redshift và giải pháp bộ nhớ đệm Cache.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | Đánh giá lại các mô hình thiết kế DB quan hệ và nghiên cứu dịch vụ quản trị Managed Database đám mây. | 25/05/2026 | 25/05/2026 | <https://000005.awsstudygroup.com> |
+| 3 | Làm lab cấu hình chuyên sâu Amazon RDS và AWS Aurora, thiết lập cụm Multi-AZ nâng cao tính sẵn sàng cao. | 26/05/2026 | 26/05/2026 | <https://000005.awsstudygroup.com/4-create-rds/> |
+| 4 | Cấu hình tính năng sao lưu tự động (Automated Backups) cho DB cluster và cài đặt ngưỡng cảnh báo qua CloudWatch. | 27/05/2026 | 27/05/2026 | <https://000008.awsstudygroup.com> |
+| 5 | Nghiên cứu kiến trúc kho lưu trữ dữ liệu Amazon Redshift đáp ứng các bài toán phân tích tổng hợp dữ liệu lớn (Big Data). | 28/05/2026 | 28/05/2026 | <https://ap-southeast-1.console.aws.amazon.com/redshiftv2> |
+| 6 | Tìm hiểu giải pháp in-memory caching bằng Amazon ElastiCache (Redis) tăng tốc phản hồi, giảm tải cho DB lõi. | 29/05/2026 | 29/05/2026 | <https://000061.awsstudygroup.com> |
 
 ### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Kết quả chung:** Triển khai thành công hệ quản trị database chịu lỗi cao trên RDS/Aurora và làm chủ giải pháp tối ưu hiệu năng ElastiCache.
+* **Đánh giá tuần:** Hoàn thành tốt. Đã nắm vững sự khác biệt giữa DB truyền thống và Managed DB trên Cloud, cấu hình thành công Multi-AZ.
+* **Chi tiết kết quả thực hiện:**
+  * **Ngày 25/05/2026:** Xác định được kiến trúc DB tối ưu chịu tải tốt trên Cloud.
+  * **Ngày 26/05/2026:** Database cluster vận hành ổn định, có năng lực tự động failover chịu lỗi.
+  * **Ngày 27/05/2026:** Mọi biến động tài nguyên DB được giám sát real-time chặt chẽ.
+  * **Ngày 28/05/2026:** Nắm vững cơ chế Columnar Storage phục vụ truy vấn báo cáo lớn.
+  * **Ngày 29/05/2026:** Thiết lập thành công tầng đệm cache giúp tối ưu tốc độ phản hồi ứng dụng.

@@ -7,46 +7,24 @@ pre: " <b> 1.10. </b> "
 ---
 ### Week 10 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Deploy the Backend codebase to AWS, configure secure connection to NoSQL DynamoDB database.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Monday | Inspect and normalize local Backend source code, clean up environment variables, and package the application installation. | 06/22/2026 | 06/22/2026 |  |
+| Tuesday | Initialize NoSQL DB environment on cloud, create data tables, and configure Partition/Sort Key on Amazon DynamoDB. | 06/23/2026 | 06/23/2026 |  |
+| Wednesday | Set up IAM Roles and Security Policies to assign Least Privilege to Backend service interacting with DB. | 06/24/2026 | 06/24/2026 |  |
+| Thursday | Deploy and configure Backend source code service to run successfully online on AWS Cloud platform. | 06/25/2026 | 06/25/2026 |  |
+| Friday | Use Postman tool to run API Endpoint testing suite, validating smooth read/write operations to DynamoDB. | 06/26/2026 | 06/26/2026 |  |
 
 ### Week 10 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* **General Outcome:** Successfully deployed the Backend processing service to AWS online environment and configured absolute secure connection to Amazon DynamoDB.
+* **Weekly Evaluation:** Excellently completed weekly objectives. Backend subsystem deployed smoothly, well controlling secure IAM connection to NoSQL Database.
+* **Detailed Execution Results:**
+  * **Date 06/22/2026:** Backend source code structure optimized, no local runtime errors.
+  * **Date 06/23/2026:** DynamoDB database configured according to design schema standards.
+  * **Date 06/24/2026:** Completely eliminated risk of exposing DB connection administrative credentials.
+  * **Date 06/25/2026:** Backend service operating stably online in the cloud environment.
+  * **Date 06/26/2026:** 100% of API Endpoints responded accurately with requested JSON data structure.

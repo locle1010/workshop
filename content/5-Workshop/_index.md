@@ -1,27 +1,26 @@
 ---
-title: "Workshop"
-date: 2026-04-26
+title: "AI Assistant Workshop"
+date: 2026-07-04
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
-# Secure Hybrid Access to S3 using VPC Endpoints
+
+# Deploy AI Assistant to AWS Cloud
 
 #### Overview
 
-**AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.
+**AI Assistant** is an AI-integrated virtual assistant application. This workshop guides you step-by-step through deploying the entire system onto AWS using a modern **Serverless** architecture — no server management required, auto-scaling, and cost-optimized.
 
-In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.
-
-You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location
-+ **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.
-+ **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.
+All steps in this workshop prioritize using the **AWS CLI**. In cases where CLI is impractical (complex configuration, CLI errors), alternative instructions via the **AWS Web Console** will be provided.
 
 #### Content
 
-1. [Workshop overview](5.1-Workshop-overview)
-2. [Prerequiste](5.2-Prerequiste/)
-3. [Access S3 from VPC](5.3-S3-vpc/)
-4. [Access S3 from On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (Bonus)](5.5-Policy/)
-6. [Clean up](5.6-Cleanup/)
+1. [Introduction & Architecture](5.1-Introduction/)
+2. [Environment Setup](5.2-Prerequisite/)
+3. [Setup Cognito & DynamoDB](5.3-Database/)
+4. [Setup S3 & Deploy Backend](5.4-Backend/)
+5. [Deploy Frontend to CloudFront](5.5-Frontend/)
+6. [Configure Custom Domain (Optional)](5.6-Domain/)
+7. [Install Unity App](5.7-UnityApp/)
+8. [Clean Up Resources](5.8-Cleanup/)

@@ -7,48 +7,24 @@ pre: " <b> 1.10. </b> "
 ---
 ### Mục tiêu tuần 10:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Triển khai cụm mã nguồn Backend lên AWS, cấu hình kết nối an toàn với cơ sở dữ liệu NoSQL DynamoDB.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | Kiểm tra chuẩn hóa mã nguồn Backend local, dọn dẹp biến môi trường và đóng gói bộ cài đặt ứng dụng. | 22/06/2026 | 22/06/2026 |  |
+| 3 | Khởi tạo môi trường DB NoSQL trên cloud, tạo các bảng dữ liệu (Tables) và cấu hình Partition/Sort Key trên Amazon DynamoDB. | 23/06/2026 | 23/06/2026 |  |
+| 4 | Thiết lập IAM Roles và Security Policies phân quyền hạn tối thiểu (Least Privilege) cho dịch vụ Backend tương tác DB. | 24/06/2026 | 24/06/2026 |  |
+| 5 | Tiến hành deploy cấu hình đưa dịch vụ mã nguồn Backend lên chạy trực tuyến thành công trên nền tảng AWS Cloud. | 25/06/2026 | 25/06/2026 |  |
+| 6 | Sử dụng công cụ Postman thực hiện chạy bộ test kiểm thử API Endpoint, xác thực dữ liệu đọc ghi vào DynamoDB mượt mà. | 26/06/2026 | 26/06/2026 |  |
 
 ### Kết quả đạt được tuần 10:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Kết quả chung:** Đưa thành công dịch vụ xử lý Backend lên môi trường trực tuyến AWS và cấu hình kết nối an toàn tuyệt đối tới Amazon DynamoDB.
+* **Đánh giá tuần:** Hoàn thành xuất sắc mục tiêu tuần. Phân hệ Backend deploy mượt mà, kiểm soát tốt bảo mật kết nối IAM tới Database NoSQL.
+* **Chi tiết kết quả thực hiện:**
+  * **Ngày 22/06/2026:** Mã nguồn backend tối ưu hóa cấu trúc, không có lỗi runtime local.
+  * **Ngày 23/06/2026:** Cơ sở dữ liệu DynamoDB được cấu hình đúng chuẩn schema thiết kế.
+  * **Ngày 24/06/2026:** Loại bỏ hoàn toàn nguy cơ lộ thông tin quản trị (Credential) kết nối DB.
+  * **Ngày 25/06/2026:** Backend dịch vụ hoạt động trực tuyến ổn định trên môi trường đám mây.
+  * **Ngày 26/06/2026:** 100% các API Endpoint phản hồi chính xác cấu trúc dữ liệu JSON yêu cầu.

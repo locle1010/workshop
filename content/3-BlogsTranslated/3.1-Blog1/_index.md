@@ -5,118 +5,76 @@ weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Experiencing Amazon Nova Act: AI-Powered UI Automation Without XPath Worries
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+![Amazon Nova Act](Blog1_photo.jpg)
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+Hello everyone! Today, I want to share my experience with an automation service I recently discovered and explored. I was struggling with writing automation scripts to test UI for our team project. The Frontend developer kept updating the interface constantly, causing my Selenium script to fail after a short run because it couldn't find the Selectors or XPath. While feeling reluctant to continue, I found Amazon Nova Act. Initially, I thought it was just a prompt wrapped around Selenium. However, after experimenting with it to solve my tasks, it proved to be completely different. Today, I will provide a detailed review of this highly promising tool.
 
----
+## The Pain of Maintaining Scripts in Traditional Web Automation
 
-## Architecture Guidance
+Before going into detail, let me quickly explain for those who are unfamiliar with the concept. **Web Automation** is simply writing code to direct a computer to automatically open a browser and perform actions (click, scroll, fill text...) just like a human. This task is extremely common in the software industry:
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+*   **Automation Testing:** Automatically running websites to test for bugs before releasing them to users.
+*   **Web Scraping:** Automatically gathering information from various websites for analysis.
+*   **Office Automation:** Automatically performing repetitive tasks like reading data from Excel and entering it into internal admin websites.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+Normally, to do this, we use traditional tools like Selenium, Playwright, or Puppeteer. They work by requiring us to specify the exact "coordinates" of buttons or inputs on the webpage (known as XPath or CSS Selectors) so the code knows where to click.
 
-**The solution architecture is now as follows:**
+It sounds simple, but it stops being simple when the Frontend developer updates the UI, renames a CSS class, or wraps a button in a different HTML tag. This immediately breaks the XPath we worked hard to find. When you run the script after a short break, you see red errors filling the screen. Consequently, we must constantly chase UI changes just to fix the code and maintain those scripts, leaving little time for sleep.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+## How Does Nova Act Solve This Problem?
 
----
+Essentially, **Amazon Nova Act** is a service that helps you build AI Agents capable of controlling web browsers just like a real human. The key difference is that it does not use XPath or CSS Selectors at all. Instead, you control it using English—natural language. For example, instead of finding the ID of a search bar and writing `.fill()`, you only need to write:
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+```python
+nova.act("Type 'iPhone' into the search bar and then press enter")
+```
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+The Nova Act system uses the Amazon Nova 2 Lite foundation model, which is specially trained using Reinforcement Learning in simulated environments called "Web Gyms." It automatically identifies the search bar or the login button based on the visual layout and page structure at that moment, rather than relying strictly on HTML code. According to AWS, its accuracy in real-world environments exceeds 90%—a score good enough for production use.
 
----
+## From Playing in the Playground to Deploying to the Cloud
 
-## Technology Choices and Communication Scope
+Getting started with Nova Act is quite smooth. Here are the steps I went through:
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+### Step 1: Experimenting on the Web Playground
+Simply visit [nova.amazon.com/act](https://nova.amazon.com/act). The interface is completely no-code. You enter a URL (e.g., `amazon.com`), then type your request. You will see a simulated screen showing the AI automatically scrolling, moving the cursor, and clicking boxes. The technology is truly impressive!
 
----
+### Step 2: Writing Python Code with the SDK & IDE Extension
+After playing enough on the web, I wanted to write real code. I installed the library using:
+```bash
+pip install nova-act
+```
+AWS also provides a VS Code extension that supports this exceptionally well.
 
-## The Pub/Sub Hub
+Nova Act also supports **Hybrid** workflows. You can combine AI actions (`nova.act(...)`) with pure Python code logic between steps. For example, you can write a script to auto-fill a customer registration form using data from an Excel file. The AI handles the form filling, while Python reads the Excel file and executes the `for` loop.
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+Here is a mock-up of the code I tried writing:
+```python
+for customer in customer_list:
+    nova.act(f"Fill name {customer['name']} and email {customer['email']} into form register")
+    nova.act("Click Submit button and wait page reload")
+```
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+While coding, the Extension opens a small embedded browser window right next to your IDE for "live debugging." Whichever line of code you execute, the adjacent browser runs the action immediately.
 
----
+### Step 3: Deploying to AWS and Running "Fleet"
+Once your code runs successfully locally, instead of manually setting up Docker, building headless Chrome on EC2 or Lambda, etc., you just click the Deploy button on the Extension. Nova Act packages everything into a container, pushes it to Amazon ECR, and runs it on the Bedrock AgentCore infrastructure. Whenever the script triggers, AWS automatically creates an isolated browser sandbox environment. You can scale up to run hundreds of workflows concurrently without worrying about overloading your local machine.
 
-## Core Microservice
+## 3 Core Features That Set Nova Act Apart
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+1.  **Human-in-the-Loop (HITL):** This is an incredibly smart feature. When the AI runs automatically and encounters a CAPTCHA or a locked account, it doesn't stop or throw an error to crash the system. Instead, it sends a notification via Amazon SNS to the administrator containing a secure DevTools link. You simply click the link, solve the CAPTCHA manually, and the AI automatically resumes the subsequent steps.
+2.  **Visual Observability:** On the AWS Console, you can review the execution history as video recordings or view screenshots at each action step taken by the AI to verify if it performed correctly.
+3.  **Enterprise-Grade Security:** Because it runs entirely inside AWS sandbox environments, you can define very granular IAM permissions for each workflow, eliminating the risk of session data or cookie leakage.
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+## Conclusion
 
----
+Encountering the concept of "Agentic AI" for the first time, I was thoroughly convinced by how AWS designed Amazon Nova Act. It is not just a demo for fun, but a well-architected system aimed at solving actual enterprise operational challenges.
 
-## Front Door Microservice
+If you are a QA engineer, DevOps practitioner, or looking to automate repetitive office tasks, you should definitely try Nova Act. Here are the official documentation links to get started:
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+*   **Playground Homepage:** <https://nova.amazon.com/act>
+*   **AWS News Blog - Build Reliable AI Agents for UI Workflow Automation:** [AWS News Blog](https://aws.amazon.com/blogs/aws/introducing-amazon-nova-models-in-amazon-bedrock/)
+*   **AWS Technical Documentation:** <https://docs.aws.amazon.com/nova-act/latest/userguide/what-is-nova-act.html>
 
----
-
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
-
----
-
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+What do you think about this service? Will it be capable of replacing Selenium entirely in the future? Leave your comments below to discuss! Happy coding!

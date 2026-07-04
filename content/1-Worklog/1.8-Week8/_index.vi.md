@@ -7,48 +7,24 @@ pre: " <b> 1.8. </b> "
 ---
 ### Mục tiêu tuần 8:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Nghiên cứu tài liệu kỹ thuật chuyên sâu và hoàn thiện sơ đồ thiết kế kiến trúc hệ thống tổng thể cho đồ án.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | Đọc hiểu các tài liệu đặc tả kỹ thuật chuyên sâu bằng tiếng Anh trực tiếp tại trang chủ AWS Documentation. | 08/06/2026 | 08/06/2026 |  |
+| 3 | Tham khảo các biểu mẫu mô hình chuẩn thực tế tại AWS Architecture Center nhằm tăng tính sẵn sàng cho app. | 09/06/2026 | 09/06/2026 |  |
+| 4 | Phân tích, làm rõ luồng dữ liệu (Data Flow) di chuyển tuần tự từ thiết bị người dùng đến CDN, Tầng xử lý và Cơ sở dữ liệu. | 10/06/2026 | 10/06/2026 |  |
+| 5 | Sử dụng công cụ thiết kế đồ họa sơ đồ chuyên dụng để vẽ Bản vẽ kiến trúc tổng thể (Architecture Diagram) cho dự án. | 11/06/2026 | 11/06/2026 |  |
+| 6 | Rà soát tính an toàn thông tin, tối ưu hóa chi phí vận hành tài nguyên trên bản vẽ cùng với Mentor hướng dẫn. | 12/06/2026 | 12/06/2026 |  |
 
 ### Kết quả đạt được tuần 8:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Kết quả chung:** Hoàn thiện sơ đồ thiết kế kiến trúc hệ thống tổng thể cho đồ án tốt nghiệp và được Mentor thông qua phê duyệt.
+* **Đánh giá tuần:** Hoàn thành tốt. Cải thiện đáng kể kỹ năng đọc tài liệu tiếng Anh chuyên ngành và tư duy thiết kế hệ thống chịu tải.
+* **Chi tiết kết quả thực hiện:**
+  * **Ngày 08/06/2026:** Thu thập đủ cẩm nang hướng dẫn cấu hình chuẩn từ hãng.
+  * **Ngày 09/06/2026:** Học hỏi được giải pháp phân bổ tài nguyên chịu lỗi đa vùng mạng.
+  * **Ngày 10/06/2026:** Luồng dữ liệu được thiết kế tối ưu, phòng tránh nghẽn cổ chai hệ thống.
+  * **Ngày 11/06/2026:** Sơ đồ kiến trúc tổng thể hoàn thiện chi tiết, hiển thị rõ ràng luồng tương tác.
+  * **Ngày 12/06/2026:** Bản vẽ thiết kế được Mentor thông qua phê duyệt cho phép triển khai.

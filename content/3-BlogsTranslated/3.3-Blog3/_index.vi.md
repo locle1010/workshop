@@ -5,119 +5,49 @@ weight: 1
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
+# Tạo Model 3D từ việc dùng AI để chuyển đổi hình 2D sang 3D Assets trên AWS
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+![Tạo Model 3D bằng AI](Blog3_photo.jpg)
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+## 1. Tổng Quan Kiến Trúc Đề Xuất
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Để đảm bảo sự cân bằng giữa hiệu suất xử lý đồ họa (GPU) và chi phí, workflow của chúng ta sẽ được chia thành hai giai đoạn tính toán chính, kết nối với nhau qua kho lưu trữ Amazon S3:
 
----
+*   **Amazon S3 (Kho lưu trữ trung tâm):** Nơi chứa các bản vẽ concept 2D ban đầu và lưu trữ các file định dạng `.glb` (3D objects) được tạo ra ở mỗi bước.
+*   **Bước 1 - Tạo Mesh (Amazon EC2 g4dn.2xlarge):** Sử dụng dòng máy ảo `g4dn` được trang bị GPU Nvidia. Chúng ta sẽ kéo ảnh từ S3 xuống, dùng mô hình **TripoSG** để tính toán và sinh ra phần khối geometry (mesh) cơ bản. File sau khi tạo sẽ được đẩy ngược lên S3.
+*   **Bước 2 - Tạo và Dán Texture (Amazon EC2 g6e.2xlarge):** Giai đoạn multi-view texturing đòi hỏi lượng vRAM cực lớn. Tại đây, mô hình **MV-Adapter** sẽ dùng ảnh gốc 2D làm reference, phủ texture đa góc độ lên model vừa được tạo ra ở Bước 1.
 
-## Hướng dẫn kiến trúc
+## 2. Triển Khai Thực Tế & Tối Ưu Chi Phí
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Việc đầu tiên là thiết lập hạ tầng mạng và chọn đúng Amazon Machine Image (AMI). Các lập trình viên nên dùng các AMI được cài sẵn môi trường Deep Learning (CUDA, PyTorch) để tiết kiệm thời gian cấu hình môi trường.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+> [!TIP]
+> **Pro-tip Tối Ưu Chi Phí:** Các dòng EC2 trang bị GPU như `g4dn` hay `g6e` có giá thuê theo giờ không hề rẻ. Nếu bạn là sinh viên IT hoặc lập trình viên mới, hãy tích cực tham gia các sự kiện "Platform First Cloud AI Journey Bootcamp" hoặc các workshop của AWS Việt Nam. Việc hoàn thành task để nhận về 100 AWS credits sẽ giúp bạn có dư dả ngân sách để thoải mái test các instance này trong giai đoạn R&D mà không lo "cháy túi".
 
-**Kiến trúc giải pháp bây giờ như sau:**
+### Khởi chạy môi trường và xử lý Lưới (Mesh)
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Khi sử dụng MV-Adapter để phủ texture, có một vấn đề kỹ thuật thường gặp: các mesh sinh ra bởi AI (từ Tripo) đôi khi bị lỗi "non-manifold" (các mặt phẳng giao nhau không hợp lệ hoặc lưới bị hở).
 
----
+Để quy trình không bị crash, chúng ta cần một đoạn script can thiệp để vá lỗi lưới ngay trên EC2 trước khi chạy texturing:
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+```bash
+python fix_manifold.py inputs/raw_model.glb inputs/manifold_model.glb
+```
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+Sau đó, tiến hành chạy lệnh tạo và phủ texture:
 
----
+```bash
+python -m scripts.texture_i2tex --image inputs/concept.jpeg --mesh inputs/manifold_model.glb --save_dir outputs --remove_bg
+```
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+## 3. Đưa AI Asset Vào Game Engine (Mảnh Gem Cuối Cùng)
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Nhiều bài hướng dẫn thường dừng lại ở việc tạo ra file `.glb` và coi đó là thành quả. Nhưng đối với một Game Developer, đó mới chỉ là nguyên liệu thô. File sinh ra từ AI có số lượng đa giác (polygon count) thường không được kiểm soát tốt, và đương nhiên là... chưa có xương (rig).
 
----
+Chúng ta cần sử dụng các công cụ phổ biến như **Blender** để tối ưu hóa model và gắn xương (có thể dùng plugin Blender **"Rigify"**). Ngoài ra, ta có thể đưa model lên trang web **Mixamo** để tự động gắn xương và áp dụng các chuyển động (animation) sẵn có trên nền tảng này vào nhân vật.
 
-## The pub/sub hub
+## 4. Tổng Kết
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Việc sử dụng các mô hình AI mã nguồn mở như TripoSG và MV-Adapter trên AWS EC2 giúp bạn làm chủ hoàn toàn quá trình sinh 3D asset mà không bị giới hạn bởi các API bên ngoài. Dù sản phẩm từ AI hiện tại chưa thể thay thế hoàn toàn bàn tay của một 3D Artist chuyên nghiệp, nhưng nó là một công cụ đắc lực trong giai đoạn Prototyping. Tự động hóa được khâu này, lập trình viên sẽ tiết kiệm được vô số thời gian để tập trung vào phần quan trọng nhất: thiết kế gameplay và viết script logic cho game.
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
-
----
-
-## Core microservice
-
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
-
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
-
----
-
-## Front door microservice
-
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
-
----
-
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+**Nguồn tham khảo:** <https://aws.amazon.com/blogs/gametech/open-source-3d-game-asset-generation-using-aws>

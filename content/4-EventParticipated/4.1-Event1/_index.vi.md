@@ -1,125 +1,67 @@
 ---
 title: "Event 1"
-date: 2026-04-26
+date: 2026-05-23
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
-
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+# BÀI THU HOẠCH: TỰ ĐỘNG HÓA CÔNG VIỆC VỚI TRỢ LÝ AI AMAZON Q VÀ MCP
 
 ### Mục Đích Của Sự Kiện
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+* Giới thiệu **Amazon Q**, một trợ lý AI dành cho người dùng cuối (end-user) do AWS phát triển.
+* Giải quyết bài toán tối ưu hóa thời gian trong quá trình vận hành và lập báo cáo của doanh nghiệp.
+* Làm rõ cơ chế hoạt động của Agent và cách sử dụng giao thức MCP (Model Context Protocol) để giúp AI tương tác trực tiếp với các ứng dụng bên ngoài.
+* Truyền cảm hứng cho các lập trình viên về tư duy phát triển sản phẩm thực chiến, hướng tới việc giải quyết vấn đề thực tế của khách hàng.
 
 ### Danh Sách Diễn Giả
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+* **Hải An** - Cloud Consultant tại C Pacific Việt Nam.
 
 ### Nội Dung Nổi Bật
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### 1. Triết lý lấy người dùng làm trung tâm (User-centric)
+* Trình độ kỹ thuật chỉ là công cụ; yếu tố cốt lõi để tạo ra sản phẩm thành công là phải giải quyết triệt để vấn đề thực tế của người dùng.
+* Ứng dụng AI giúp tự động hóa quá trình tổng hợp dữ liệu và lập báo cáo hàng tuần, giúp tiết kiệm thời gian đáng kể cho các cấp quản lý.
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+#### 2. Hệ sinh thái tích hợp của Amazon Q
+* AWS xây dựng nền tảng Agent tích hợp sâu với các hệ sinh thái doanh nghiệp phổ biến như **Microsoft** (Word, Outlook, Teams, PowerPoint) và **Google** (Gmail, Calendar).
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+#### 3. Khái niệm Agent và MCP (Model Context Protocol)
+* Các mô hình ngôn ngữ lớn (LLM) tuy thông minh nhưng bản thân chúng không thể tự thực thi hành động (ví dụ: tự đặt lịch hẹn hay gửi email).
+* Để AI tương tác được với thế giới thực, hệ thống cần các hàm thực thi (Action/Function). Giao thức **MCP đóng vai trò như "những cánh tay nối dài"** kết nối AI với các nguồn dữ liệu và công cụ như Gmail, Jira, hay Confluence.
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+#### 4. Tự động hóa qua các luồng Demo thực tế
+* **Tạo Dashboard phân tích:** Người dùng không cần kiến thức phân tích dữ liệu chuyên sâu (BI) vẫn có thể tải một file dữ liệu thô (Excel) lên hệ thống để Amazon Q tự động phân tích và trực quan hóa thành biểu đồ.
+* **Tóm tắt cuộc họp:** AI tự động chuyển đổi giọng nói thành văn bản, tóm tắt các quyết định quan trọng trong cuộc họp và kích hoạt MCP để tự động gửi email báo cáo các bước tiếp theo (next steps) cho người tham gia.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
-
-#### Domain-Driven Design (DDD)
-
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
-
-#### Event-Driven Architecture
-
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
-
-#### Compute Evolution
-
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
-
-#### Amazon Q Developer
-
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+#### 5. Tuân thủ Bảo mật
+* Nền tảng hoạt động dựa trên Mô hình Trách nhiệm Chia sẻ (Shared Responsibility Model) của AWS: AWS chịu trách nhiệm bảo mật hạ tầng và các mô hình nền tảng, trong khi người dùng kiểm soát dữ liệu và phân quyền ứng dụng của mình.
 
 ### Những Gì Học Được
 
 #### Tư Duy Thiết Kế
-
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+* Sản phẩm công nghệ phải bắt đầu từ nhu cầu thiết thực và gần gũi của người dùng.
+* Thiết kế hệ thống AI cần vượt qua giới hạn của mô hình "hỏi - đáp" thuần túy, hướng tới xây dựng các "Agent" tự hành có khả năng mang lại giá trị vận hành trực tiếp.
 
 #### Kiến Trúc Kỹ Thuật
+* Nắm vững kiến thức cốt lõi: **Agent = LLM + Các dịch vụ tính toán (Action/Function/MCP)**.
+* Hiểu cách thức Amazon Q kết hợp khả năng xử lý ngôn ngữ tự nhiên của AI với các API của bên thứ ba để tạo ra một luồng tự động hóa hoàn chỉnh.
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
-
-#### Chiến Lược Hiện Đại Hóa
-
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
-
-### Ứng Dụng Vào Công Việc
-
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+#### Ứng Dụng Vào Công Việc
+* **Nâng cao hiệu suất cá nhân:** Sử dụng Amazon Q để xử lý nhanh các tác vụ phân tích dữ liệu thô thành báo cáo trực quan mà không cần tốn thời gian thiết lập các công cụ phức tạp.
+* **Tự động hóa quy trình quản trị:** Nghiên cứu phát triển các module MCP nội bộ để tích hợp trợ lý AI với các công cụ quản lý công việc (như Jira, Microsoft Teams) nhằm tự động hóa luồng theo dõi công việc và gửi nhắc nhở sau họp.
 
 ### Trải nghiệm trong event
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
-
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+#### Học hỏi từ các diễn giả thực chiến
+* Bài chia sẻ của diễn giả Hải An mang tới nguồn cảm hứng lớn. Anh nhấn mạnh rằng sự khác biệt tạo nên thành công nằm ở sự tự tin và tinh thần phối hợp đồng đội để giải quyết bài toán của khách hàng.
 
 #### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
+* Được trực tiếp quan sát cách hệ thống phân rã yêu cầu tự nhiên thành một "system prompt" cấu trúc hóa để AI hiểu chính xác nhiệm vụ.
+* Trực quan hóa sức mạnh của giao thức MCP trong việc kết nối và tương tác thời gian thực với các ứng dụng bên ngoài.
 
 #### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+* Tìm hiểu sâu về nền tảng Amazon Q và mở ra tư duy tự xây dựng các MCP server tùy biến để mở rộng khả năng của AI theo nhu cầu cụ thể của dự án.
 
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
-
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật hữu ích mà còn giúp tôi thay đổi tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và cộng tác hiệu quả hơn trong đội ngũ.

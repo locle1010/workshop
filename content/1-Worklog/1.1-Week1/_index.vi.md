@@ -7,48 +7,24 @@ pre: " <b> 1.1. </b> "
 ---
 ### Mục tiêu tuần 1:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Làm quen môi trường làm việc, thiết lập tài khoản Cloud AWS cá nhân và chuẩn bị công cụ log tiến độ
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 20/04/2026   | 20/04/2026      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 21/04/2026   | 21/04/2026      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 22/04/2026   | 22/04/2026      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 23/04/2026   | 24/04/2026      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 25/04/2026   | 25/04/2026      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | Tạo tài khoản AWS Root/IAM và kích hoạt bảo mật tài khoản nâng cao với MFA. | 20/04/2026 | 20/04/2026 | <https://000001.awsstudygroup.com> <br> <https://000002.awsstudygroup.com> |
+| 3 | Cài đặt và cấu hình môi trường phát triển local bao gồm AWS CLI, Git, cấu hình IDE mã nguồn (Cursor/VS Code). | 21/04/2026 | 21/04/2026 | <https://aws.amazon.com/cli/> |
+| 4 | Khám phá giao diện quản trị AWS Management Console, tìm hiểu tổng quan các nhóm dịch vụ core nền tảng. | 22/04/2026 | 22/04/2026 | <https://console.aws.amazon.com> |
+| 5 | Hoàn thành chuỗi task học tập theo yêu cầu của chương trình huấn luyện để nhận thành công gói 100 credits cloud. | 23/04/2026 | 23/04/2026 | <https://000001.awsstudygroup.com/vi/3-chiến-lược-nhận-đủ-200-credit/> |
+| 6 | Thiết kế, định cấu hình và vận hành trang web Work log cá nhân phục vụ việc tracking tiến độ hàng ngày. | 24/04/2026 | 24/04/2026 | <https://hcm-rules.awsfcaj.com/3-project/> |
 
 ### Kết quả đạt được tuần 1:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Kết quả chung:** Hoàn thành thiết lập môi trường làm việc, nhận ngân sách credit và kích hoạt hệ thống tracking tiến độ cá nhân.
+* **Đánh giá tuần:** Hoàn thành tốt 100% mục tiêu tuần. Thích nghi nhanh với quy trình làm việc và các công cụ quản lý tiến độ nội bộ.
+* **Chi tiết kết quả thực hiện:**
+  * **Ngày 20/04/2026:** Tài khoản AWS cấu hình IAM và MFA an toàn.
+  * **Ngày 21/04/2026:** AWS CLI kết nối mượt mà tới Cloud từ máy local.
+  * **Ngày 22/04/2026:** Nắm vững luồng thao tác và sơ đồ điều hướng dịch vụ.
+  * **Ngày 23/04/2026:** Tài khoản nhận đủ 100 credits tài nguyên chạy lab.
+  * **Ngày 24/04/2026:** Trang web cá nhân hoạt động ổn định, ghi nhận log tuần đầu.

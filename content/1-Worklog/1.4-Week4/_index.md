@@ -7,46 +7,24 @@ pre: " <b> 1.4. </b> "
 ---
 ### Week 4 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Operate Amazon EC2 virtual servers, set up Security Group firewalls, and deploy a Web Server.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Monday | Study Amazon EC2 service, understand classification standards of Instance Types and how to choose optimal AMI. | 05/11/2026 | 05/11/2026 | <https://000004.awsstudygroup.com> |
+| Tuesday | Practice the process of launching EC2 instances running on Ubuntu and Amazon Linux 2 operating systems. | 05/12/2026 | 05/12/2026 | <https://000004.awsstudygroup.com/4-launchlinuxinstance/> |
+| Wednesday | Create highly secure authentication Key Pairs and configure Security Group firewalls to control Inbound/Outbound traffic. | 05/13/2026 | 05/13/2026 | <https://000004.awsstudygroup.com/5-amazonec2basic/5.3-createcustomami/> |
+| Thursday | Use SSH protocol from a personal machine to remotely access the virtual server OS to check stability. | 05/14/2026 | 05/14/2026 | <https://000004.awsstudygroup.com/5-amazonec2basic/5.7-ubuntu/> |
+| Friday | Deploy installation and configuration of Web Server software (Nginx) on the instance, test public web content display. | 05/15/2026 | 05/15/2026 | <https://000004.awsstudygroup.com/6-awsfcjmanagement-linux/> |
 
 ### Week 4 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* **General Outcome:** Successfully launched EC2 virtual server instances, finalized and tightened security configurations, and stably deployed the Web Server service.
+* **Weekly Evaluation:** Met requirements. Clearly understood the process of configuring Linux OS and managing ports securely on EC2.
+* **Detailed Execution Results:**
+  * **Date 05/11/2026:** Understood how to choose virtualized hardware configurations suitable for cost efficiency.
+  * **Date 05/12/2026:** Server instances activated to normal running status.
+  * **Date 05/13/2026:** Blocked unauthorized connection attempts, only opening specified service ports.
+  * **Date 05/14/2026:** Root server control was seamless via SSH key pair.
+  * **Date 05/15/2026:** Demo website running smoothly online via public IP address.

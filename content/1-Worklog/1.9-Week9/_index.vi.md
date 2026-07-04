@@ -7,48 +7,24 @@ pre: " <b> 1.9. </b> "
 ---
 ### Mục tiêu tuần 9:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Cải tiến tinh chỉnh sơ đồ kiến trúc hệ thống lưu trữ và tham gia chuỗi hoạt động học tập công nghệ nội bộ.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | Tiếp thu các góp ý chuyên môn, tiến hành điều chỉnh chỉnh sửa sơ đồ thiết kế hệ thống đảm bảo tối ưu hóa vận hành. | 15/06/2026 | 15/06/2026 |  |
+| 3 | Cải tiến cấu trúc tầng lưu trữ và luồng dữ liệu đầu vào (Data Ingestion) để tăng độ ổn định khi chịu tải cao. | 16/06/2026 | 16/06/2026 |  |
+| 4 | Tổng hợp nhật ký, viết báo cáo tiến độ chi tiết chặng thiết kế kỹ thuật phục vụ đánh giá định kỳ kỳ thực tập. | 17/06/2026 | 17/06/2026 |  |
+| 5 | Tham gia sự kiện công nghệ chuyên sâu nội bộ dành cho các kỹ sư đám mây của chương trình AWS huấn luyện. | 18/06/2026 | 18/06/2026 |  |
+| 6 | Đúc kết các kinh nghiệm thực chiến từ sự kiện nội bộ, rà soát lại mã nguồn ứng dụng chuẩn bị cho tuần deploy. | 19/06/2026 | 19/06/2026 |  |
 
 ### Kết quả đạt được tuần 9:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Kết quả chung:** Tối ưu hóa thành công sơ đồ kiến trúc hệ thống lưu trữ dữ liệu và thu hoạch kiến thức thực chiến từ sự kiện công nghệ nội bộ AWS.
+* **Đánh giá tuần:** Hoàn thành đúng tiến độ. Tiếp thu được nhiều giải pháp thực tế hữu ích từ sự kiện nội bộ để áp dụng tối ưu đồ án.
+* **Chi tiết kết quả thực hiện:**
+  * **Ngày 15/06/2026:** Sơ đồ kiến trúc phiên bản cải tiến tăng độ tin cậy.
+  * **Ngày 16/06/2026:** Luồng ghi nhận thông tin đầu vào được tối ưu cấu trúc dữ liệu đệm.
+  * **Ngày 17/06/2026:** Báo cáo chặng giữa kỳ thực tập hoàn tất đúng hạn.
+  * **Ngày 18/06/2026:** Tiếp thu nhiều mẹo cấu hình hệ thống thực tế từ các chuyên gia đầu ngành.
+  * **Ngày 19/06/2026:** Source code local được kiểm tra kỹ, sẵn sàng đưa lên môi trường cloud.

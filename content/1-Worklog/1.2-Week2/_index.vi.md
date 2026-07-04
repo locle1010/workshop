@@ -7,48 +7,24 @@ pre: " <b> 1.2. </b> "
 ---
 ### Mục tiêu tuần 2:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Nghiên cứu kiến trúc phân vùng mạng Amazon VPC và thiết lập kết nối an toàn Site-to-Site VPN.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | Nghiên cứu cấu trúc Amazon VPC lý thuyết: Subnets (Public/Private), Route Tables, Internet Gateways. | 27/04/2026 | 27/04/2026 | <https://000003.awsstudygroup.com> |
+| 3 | Tự tay thiết kế và triển khai mô hình phân vùng mạng Private bám sát AWS Well-Architected Framework. | 28/04/2026 | 28/04/2026 | <https://000003.awsstudygroup.com/3-prerequisite/> |
+| 4 | Tìm hiểu kiến trúc hệ thống mạng On-premise giả lập và nguyên lý hoạt động của mã hóa đường truyền VPN. | 29/04/2026 | 29/04/2026 | <https://000003.awsstudygroup.com/5-vpnsitetosite/> |
+| 5 | Khởi tạo Customer Gateway và Virtual Private Gateway trên hạ tầng quản lý AWS Cloud. | 30/04/2026 | 30/04/2026 | <https://000010.awsstudygroup.com/3-connecttordgw/> |
+| 6 | Setup hoàn chỉnh kết nối đường truyền Site-to-Site VPN, kiểm tra kết nối thông suốt giữa 2 môi trường mạng. | 01/05/2026 | 01/05/2026 | <https://000003.awsstudygroup.com/7-infrastructureascode/> |
 
 ### Kết quả đạt được tuần 2:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Kết quả chung:** Triển khai thành công hệ thống mạng VPC bảo mật đạt chuẩn AWS Well-Architected và thông suốt kết nối mã hóa VPN.
+* **Đánh giá tuần:** Đạt mục tiêu tuần. Đã làm chủ kiến thức core mạng cloud (VPC) và cấu hình kết nối VPN On-premise thành công.
+* **Chi tiết kết quả thực hiện:**
+  * **Ngày 27/04/2026:** Hiểu rõ cơ chế định tuyến dữ liệu trên môi trường Cloud.
+  * **Ngày 28/04/2026:** Hạ tầng VPC được cô lập an toàn cho các dịch vụ nội bộ.
+  * **Ngày 29/04/2026:** Xác định được các thông số mã hóa IPsec cần thiết.
+  * **Ngày 30/04/2026:** Các cổng kết nối Gateway được cấu hình đúng chuẩn.
+  * **Ngày 01/05/2026:** Đường truyền VPN hoạt động ổn định, dữ liệu mã hóa thông suốt.

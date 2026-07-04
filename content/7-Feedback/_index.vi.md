@@ -5,36 +5,55 @@ weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
->Tại đây bạn có thể tự do đóng góp ý kiến cá nhân về những trải nghiệm khi tham gia chương trình First Cloud Journey, giúp team FCJ cải thiện những vấn đề còn thiếu sót dựa trên các hạng mục sau:
 
 ### Đánh giá chung
 
 **1. Môi trường làm việc**  
-Môi trường làm việc rất thân thiện và cởi mở. Các thành viên trong FCJ luôn sẵn sàng hỗ trợ khi mình gặp khó khăn, kể cả ngoài giờ làm việc. Không gian làm việc gọn gàng, thoải mái, giúp mình tập trung tốt hơn. Tuy nhiên, mình nghĩ có thể bổ sung thêm một số buổi giao lưu hoặc team bonding để mọi người hiểu nhau hơn.
+Ngay từ những ngày đầu bước chân vào văn phòng AWS Việt Nam, mình đã ấn tượng bởi không khí làm việc vừa năng động, vừa cực kỳ cởi mở. Không gian thiết kế hiện đại, nhiều góc làm việc linh hoạt giúp kích thích sự tập trung. Điều mình quý nhất là mọi người giao tiếp rất bình đẳng, không hề có khoảng cách thế hệ hay cấp bậc. Tuy nhiên, nếu có thêm nhiều các buổi event thì sẽ giúp các thành viên gắn kết với nhau nhanh hơn nữa.
 
 **2. Sự hỗ trợ của mentor / team admin**  
-Mentor hướng dẫn rất chi tiết, giải thích rõ ràng khi mình chưa hiểu và luôn khuyến khích mình đặt câu hỏi. Team admin hỗ trợ các thủ tục, tài liệu và tạo điều kiện để mình làm việc thuận lợi. Mình đánh giá cao việc mentor cho phép mình thử và tự xử lý vấn đề thay vì chỉ đưa đáp án.
+Mình cảm thấy rất may mắn khi được đồng hành cùng một mentor có tâm và có tầm. Thay vì chỉ đưa ra đáp án có sẵn khi mình gặp lỗi, mentor luôn kiên nhẫn định hướng phương pháp tư duy độc lập để mình tự tìm ra bản chất vấn đề. Bên cạnh đó, team admin luôn hỗ trợ cực kỳ chu đáo từ việc chuẩn bị thiết bị, tài liệu đến các thủ tục hành chính, giúp mình hoàn toàn yên tâm tập trung vào chuyên môn.
 
 **3. Sự phù hợp giữa công việc và chuyên ngành học**  
-Công việc mình được giao phù hợp với kiến thức mình đã học ở trường, đồng thời mở rộng thêm những mảng mới mà mình chưa từng được tiếp cận. Nhờ vậy, mình vừa củng cố kiến thức nền tảng, vừa học thêm kỹ năng thực tế.
+Dự án capstone này là sự giao thoa hoàn hảo giữa những kiến thức mạng máy tính, cơ sở dữ liệu mình học ở trường với hạ tầng điện toán đám mây thực tế. Việc kết nối trực tiếp một trang web, một ứng dụng Unity Desktop App với hệ thống backend API chạy serverless trên cloud đã giúp mình hiện thực hóa những lý thuyết khô khan thành sản phẩm thực tế có khả năng vận hành.
 
 **4. Cơ hội học hỏi & phát triển kỹ năng**  
-Trong quá trình thực tập, mình học được nhiều kỹ năng mới như sử dụng công cụ quản lý dự án, kỹ năng làm việc nhóm, và cả cách giao tiếp chuyên nghiệp trong môi trường công ty. Mentor cũng chia sẻ nhiều kinh nghiệm thực tế giúp mình định hướng tốt hơn cho sự nghiệp.
+12 tuần tại đây đã mang lại cho mình một lượng kiến thức khổng lồ. Không chỉ dừng lại ở việc làm quen với các dịch vụ cốt lõi của AWS, mình còn học được cách thiết kế kiến trúc hệ thống tối ưu chi phí, cách xử lý sự cố trong môi trường production, và đặc biệt là kỹ năng viết tài liệu kỹ thuật bài bản — điều mà mình đang thể hiện qua chính trang workshop này.
 
 **5. Văn hóa & tinh thần đồng đội**  
-Văn hóa công ty rất tích cực: mọi người tôn trọng lẫn nhau, làm việc nghiêm túc nhưng vẫn vui vẻ. Khi có dự án gấp, mọi người cùng nhau cố gắng, hỗ trợ không phân biệt vị trí. Điều này giúp mình cảm thấy mình là một phần của tập thể, dù chỉ là thực tập sinh.
+Văn hóa của công ty thấm nhuần các nguyên tắc hành xử của Amazon, nổi bật nhất là tinh thần "Ownership" (Làm chủ công việc) và "Learn and Be Curious" (Luôn học hỏi và tò mò). Mặc dù chỉ là thực tập sinh, mình vẫn được tôn trọng và trao quyền tự quyết đối với sản phẩm của mình như một builder thực thụ. Mọi người trong team luôn sẵn sàng ngồi lại cùng nhau gỡ rối mỗi khi có ca khó.
 
 **6. Chính sách / phúc lợi cho thực tập sinh**  
-Công ty có hỗ trợ phụ cấp thực tập và tạo điều kiện về thời gian linh hoạt khi cần thiết. Ngoài ra, việc được tham gia các buổi đào tạo nội bộ là một điểm cộng lớn.
+Chính sách đãi ngộ dành cho thực tập sinh rất tốt và tương xứng với công sức bỏ ra. Ngoài hỗ trợ phụ cấp, công ty còn tạo điều kiện tối đa cho mình về mặt thời gian để cân bằng giữa lịch thi cử trên trường và công việc tại văn phòng. Các buổi tech-sharing nội bộ cũng là những đặc quyền học tập vô cùng giá trị.
 
+---
 
 ### Một số câu hỏi khác
-- Điều bạn **hài lòng nhất** trong thời gian thực tập?  
-- Điều bạn nghĩ công ty **cần cải thiện** cho các thực tập sinh sau?  
-- Nếu giới thiệu cho bạn bè, bạn có **khuyên họ thực tập ở đây không**? Vì sao?  
 
+**Điều hài lòng nhất trong thời gian thực tập?**
+
+Đó là khoảnh khắc hệ thống hoàn chỉnh chạy trơn tru trên AWS Cloud — từ giao diện Web React, game Unity trên máy tính cho đến backend API Gateway + Lambda kết nối database DynamoDB. Cảm giác nhìn thấy dữ liệu từ Desktop App đồng bộ ngay lập tức lên Web thông qua môi trường Cloud thực tế mang lại cho mình sự tự tin rất lớn vào năng lực bản thân.
+
+**Điều nghĩ công ty cần cải thiện cho các thực tập sinh sau?**
+
+Mình nghĩ chương trình có thể bổ sung một buổi định hướng kỹ thuật (Technical Onboarding) ngắn ngay trong tuần đầu tiên. Buổi này sẽ giới thiệu tổng quan về các công cụ, chuẩn viết code, quy trình nộp báo cáo cũng như các dịch vụ AWS chính dự kiến sẽ áp dụng. Điều đó giúp các bạn thực tập sinh sau tránh được cảm giác bỡ ngỡ ban đầu và bắt nhịp dự án nhanh hơn.
+
+**Nếu giới thiệu cho bạn bè, có khuyên họ thực tập ở đây không?**
+
+Chắc chắn là có. Đây thực sự là môi trường "thực chiến" hiếm có đối với những bạn trẻ muốn theo đuổi mảng Cloud Architecture hay Serverless Backend. Bạn sẽ không bao giờ phải làm những việc hành chính nhàm chán mà được trực tiếp tham gia xây dựng sản phẩm thật, dưới sự dẫnắt của những người đi trước giàu kinh nghiệm.
+
+---
 
 ### Đề xuất & mong muốn
-- Bạn có đề xuất gì để cải thiện trải nghiệm trong kỳ thực tập?  
-- Bạn có muốn tiếp tục chương trình này trong tương lai?
-- Góp ý khác (tự do chia sẻ):
+
+**Đề xuất cải thiện trải nghiệm thực tập:**
+
+Mong rằng công ty có thể tổ chức một buổi Showcase/Demo cuối kỳ quy mô nội bộ. Đây sẽ là dịp để tất cả thực tập sinh trong đợt trình bày thành quả của mình trước toàn thể phòng ban, vừa giúp rèn luyện kỹ năng thuyết trình, vừa là cơ hội nhận được những đóng góp chuyên môn quý báu từ các kỹ sư và Solution Architect đi trước.
+
+**Có muốn tiếp tục chương trình này trong tương lai?**
+
+Mình rất mong muốn có cơ hội quay trở lại sau khi hoàn thành thực tập. Kỳ thực tập này đã định hình rất rõ ràng con đường sự nghiệp mà mình muốn theo đuổi: thiết kế và triển khai các hệ thống Serverless quy mô lớn trên nền tảng AWS.
+
+**Góp ý khác:**
+
+Hành trình 12 tuần trôi qua rất nhanh nhưng những gì mình nhận lại được thì vô cùng lớn lao. Xin gửi lời cảm ơn chân thành nhất đến FCAJ, người hướng dẫn trực tiếp và toàn thể các anh chị trong văn phòng đã luôn hỗ trợ, tạo điều kiện tốt nhất để mình hoàn thành kỳ thực tập ý nghĩa này.

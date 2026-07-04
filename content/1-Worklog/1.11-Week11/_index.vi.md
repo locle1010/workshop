@@ -7,48 +7,24 @@ pre: " <b> 1.11. </b> "
 ---
 ### Mục tiêu tuần 11:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Triển khai ứng dụng Frontend tĩnh lên Amazon S3, kích hoạt mạng phân phối CDN CloudFront và định tuyến Route 53.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | Đóng gói mã nguồn Frontend thành bộ resource tĩnh; Khởi tạo Amazon S3 Bucket và kích hoạt Static Website Hosting. | 29/06/2026 | 29/06/2026 |  |
+| 3 | Đẩy toàn bộ source code frontend lên S3, phân định Bucket Policy cấp quyền truy cập đọc (Read) hợp lý cho client công cộng. | 30/06/2026 | 30/06/2026 |  |
+| 4 | Cấu hình AWS CloudFront Distribution, trỏ nguồn (Origin) về S3 Bucket đóng vai trò CDN tăng tốc độ tải trang toàn cầu. | 01/07/2026 | 01/07/2026 |  |
+| 5 | Yêu cầu chứng chỉ SSL/TLS miễn phí thông qua AWS Certificate Manager (ACM) và cấu hình mã hóa bảo mật HTTPS. | 02/07/2026 | 02/07/2026 |  |
+| 6 | Cấu hình hệ thống Route 53 quản lý DNS, tạo Alias Records định tuyến tên miền riêng chính thức trỏ về mạng CloudFront. | 03/07/2026 | 03/07/2026 |  |
 
 ### Kết quả đạt được tuần 11:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Kết quả chung:** Hoàn thiện deploy toàn vẹn Frontend lên bộ đôi S3/CloudFront, kích hoạt HTTPS bảo mật và cấu hình thông suốt DNS qua Route 53.
+* **Đánh giá tuần:** Hoàn thành tốt mục tiêu. Website chạy hoàn chỉnh public, nắm vững kiến thức tối ưu hóa CDN và định tuyến domain thực tế.
+* **Chi tiết kết quả thực hiện:**
+  * **Ngày 29/06/2026:** Frontend được lưu trữ tối ưu hóa chi phí vận hành trên S3.
+  * **Ngày 30/06/2026:** Giao diện website hiển thị thành công qua đường dẫn mặc định S3.
+  * **Ngày 01/07/2026:** Mạng lưới CDN hoạt động ổn định, độ trễ tải trang giảm thiểu tối đa.
+  * **Ngày 02/07/2026:** Trang web hiển thị ổ khóa xanh bảo mật an toàn thông tin đường truyền.
+  * **Ngày 03/07/2026:** Người dùng truy cập được ứng dụng hoàn chỉnh qua Tên miền riêng dễ nhớ.

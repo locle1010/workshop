@@ -7,48 +7,24 @@ pre: " <b> 1.4. </b> "
 ---
 ### Mục tiêu tuần 4:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Vận hành máy chủ ảo Amazon EC2, thiết lập tường lửa Security Group và triển khai Web Server.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | Nghiên cứu dịch vụ Amazon EC2, tìm hiểu quy chuẩn phân loại Instance Types và cách lựa chọn AMI tối ưu. | 11/05/2026 | 11/05/2026 | <https://000004.awsstudygroup.com> |
+| 3 | Thực hành quy trình khởi chạy các máy chủ EC2 hoạt động trên nền hệ điều hành Ubuntu và Amazon Linux 2. | 12/05/2026 | 12/05/2026 | <https://000004.awsstudygroup.com/4-launchlinuxinstance/> |
+| 4 | Tạo cặp khóa xác thực Key Pairs bảo mật cao và cấu hình tường lửa Security Group kiểm soát traffic Inbound/Outbound. | 13/05/2026 | 13/05/2026 | <https://000004.awsstudygroup.com/5-amazonec2basic/5.3-createcustomami/> |
+| 5 | Sử dụng giao thức SSH từ máy cá nhân truy cập từ xa vào hệ điều hành máy chủ ảo để kiểm tra tính ổn định. | 14/05/2026 | 14/05/2026 | <https://000004.awsstudygroup.com/5-amazonec2basic/5.7-ubuntu/> |
+| 6 | Triển khai cài đặt và cấu hình phần mềm Web Server (Nginx) trên instance, chạy thử nghiệm hiển thị nội dung web công khai. | 15/05/2026 | 15/05/2026 | <https://000004.awsstudygroup.com/6-awsfcjmanagement-linux/> |
 
 ### Kết quả đạt được tuần 4:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Kết quả chung:** Khởi chạy thành công cụm máy chủ ảo EC2, hoàn thiện thắt chặt cấu hình bảo mật và deploy ổn định dịch vụ Web Server.
+* **Đánh giá tuần:** Đạt yêu cầu đề ra. Hiểu rõ quy trình thao tác cấu hình hệ điều hành Linux và quản lý port an toàn bảo mật trên EC2.
+* **Chi tiết kết quả thực hiện:**
+  * **Ngày 11/05/2026:** Hiểu cách chọn cấu hình phần cứng ảo hóa phù hợp bài toán chi phí.
+  * **Ngày 12/05/2026:** Các instance máy chủ được kích hoạt trạng thái running bình thường.
+  * **Ngày 13/05/2026:** Chặn hoàn toàn các kết nối lạ trái phép, chỉ mở port dịch vụ quy định.
+  * **Ngày 14/05/2026:** Quyền làm chủ root server thông suốt qua SSH key pair.
+  * **Ngày 15/05/2026:** Trang web demo chạy mượt mà trực tuyến qua địa chỉ IP công cộng.
