@@ -7,7 +7,7 @@ pre: " <b> 3.3. </b> "
 ---
 # Generating 3D Models from 2D Images using AI on AWS
 
-> **Original Post:** [AWS Study Group - FCJ](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2190041575094136)
+> **Original Post:** [AWS Study Group - FCAJ](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2190041575094136)
 
 ![3D Model Generation with AI](/images/3-BlogsTranslated/Blog3_photo.jpg)
 

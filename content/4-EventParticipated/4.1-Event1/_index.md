@@ -65,3 +65,5 @@ pre: " <b> 4.1. </b> "
 *   Gained clear insights into the Amazon Q platform, opening up the possibilities of building custom MCP servers to extend AI features for project-specific tasks.
 
 > Overall, the event provided tremendous value in both technical expertise and system architecture, helping me shape the development of smart automation solutions.
+
+![Event Participation Image](/images/4-EventParticipated/event1_picture.jpg)

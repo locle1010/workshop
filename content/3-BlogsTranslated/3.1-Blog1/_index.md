@@ -7,7 +7,7 @@ pre: " <b> 3.1. </b> "
 ---
 # Experience Amazon Nova Act: UI Automation with AI, No More XPath Fixing
 
-> **Original Post:** [AWS Study Group - FCJ](https://www.facebook.com/groups/awsstudygroupfcj/posts/2175053513259609)
+> **Original Post:** [AWS Study Group - FCAJ](https://www.facebook.com/groups/awsstudygroupfcj/posts/2175053513259609)
 
 ![Amazon Nova Act](/images/3-BlogsTranslated/Blog1_photo.jpg)
 

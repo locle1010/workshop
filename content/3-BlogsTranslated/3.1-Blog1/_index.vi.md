@@ -7,7 +7,7 @@ pre: " <b> 3.1. </b> "
 ---
 # Trải nghiệm Amazon Nova Act: Tự động hóa UI bằng AI, không lo fix XPath
 
-> **Bài viết gốc:** [AWS Study Group - FCJ](https://www.facebook.com/groups/awsstudygroupfcj/posts/2175053513259609)
+> **Bài viết gốc:** [AWS Study Group - FCAJ](https://www.facebook.com/groups/awsstudygroupfcj/posts/2175053513259609)
 
 ![Amazon Nova Act](/images/3-BlogsTranslated/Blog1_photo.jpg)
 

@@ -65,3 +65,5 @@ pre: " <b> 4.1. </b> "
 *   Hiểu rõ cách thức hoạt động của Amazon Q, từ đó mở rộng tư duy thiết kế các máy chủ MCP tùy chỉnh nhằm mở rộng tính năng của AI theo đặc thù của từng dự án.
 
 > Nhìn chung, sự kiện mang lại giá trị lớn cả về mặt kiến thức kỹ thuật lẫn tư duy thiết kế hệ thống, giúp tôi định hình rõ ràng hơn hướng phát triển các giải pháp tự động hóa thông minh trong tương lai.
+
+![Hình ảnh tham gia sự kiện](/images/4-EventParticipated/event1_picture.jpg)

@@ -57,3 +57,5 @@ pre: " <b> 4.3. </b> "
 *   Mở rộng hiểu biết về việc kết hợp Generative AI với cơ chế Tool Calling để giải quyết các quy trình nghiệp vụ tự động hóa đầu cuối phức tạp.
 
 > Tổng kết lại, sự kiện đã cung cấp một góc nhìn toàn diện về công nghệ Voice AI và các bài học quý giá về cách thiết kế, tối ưu hệ thống để ứng dụng hiệu quả vào thực tiễn doanh nghiệp.
+
+![Hình ảnh tham gia sự kiện](/images/4-EventParticipated/event3.jpg)

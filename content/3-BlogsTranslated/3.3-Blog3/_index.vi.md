@@ -7,7 +7,7 @@ pre: " <b> 3.3. </b> "
 ---
 # Tạo Model 3D từ việc dùng AI để chuyển đổi hình 2D sang 3D Assets trên AWS
 
-> **Bài viết gốc:** [AWS Study Group - FCJ](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2190041575094136)
+> **Bài viết gốc:** [AWS Study Group - FCAJ](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2190041575094136)
 
 ![Tạo Model 3D bằng AI](/images/3-BlogsTranslated/Blog3_photo.jpg)
 

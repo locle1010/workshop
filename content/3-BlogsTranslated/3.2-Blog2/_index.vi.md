@@ -7,7 +7,7 @@ pre: " <b> 3.2. </b> "
 ---
 # Kết hợp Amazon Cognito và Amazon Verified Permissions để triển khai Fine-grained Access Control
 
-> **Bài viết gốc:** [AWS Study Group - FCJ](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2185975575500736)
+> **Bài viết gốc:** [AWS Study Group - FCAJ](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2185975575500736)
 
 ![Amazon Cognito & Amazon Verified Permissions](/images/3-BlogsTranslated/Blog2_photo.jpg)
 

@@ -57,3 +57,5 @@ pre: " <b> 4.3. </b> "
 *   Discovered how Generative AI can be paired with Tool Calling mechanisms to automate complex end-to-end business workflows.
 
 > In conclusion, the event provided a holistic view of Voice AI technology and valuable lessons on designing and optimizing systems for real-world enterprise deployment.
+
+![Event Participation Image](/images/4-EventParticipated/event3.jpg)
