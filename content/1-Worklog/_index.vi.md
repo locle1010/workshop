@@ -6,11 +6,6 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-**Trong trang này** bạn sẽ cần giới thiệu worklog của bạn **như thế nào**? Bạn hoàn thành chương trình trong vòng **bao nhiêu tuần**? Bạn **đã làm gì** trong các tuần đó?
-
-
-Thông thường và cũng là tiêu chuẩn, một worklog được thực hiện trong khoảng 3 tháng (trong suốt thời gian thực tập) với nội dung các tuần như sau:
-
 **Tuần 1:** [Làm quen môi trường làm việc, thiết lập tài khoản Cloud AWS cá nhân và chuẩn bị công cụ log tiến độ](1.1-week1/)
 
 **Tuần 2:** [Nghiên cứu kiến trúc phân vùng mạng Amazon VPC và thiết lập kết nối an toàn Site-to-Site VPN.](1.2-week2/)
