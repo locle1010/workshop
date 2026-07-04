@@ -7,81 +7,81 @@ pre: " <b> 4.2. </b> "
 ---
 # SUMMARY REPORT: AUTOMATED PROMPT ENGINEERING - ENHANCING LLM OUTPUT QUALITY
 
-### Event Objectives
+### 1. Focus of the Session
 
-* Share the art of communicating with AI and methods to optimize the output quality of Large Language Models (LLMs).
-* Highlight the importance of Prompt Engineering and the negative impacts of poorly designed prompts.
-* Provide structures, principles, and techniques from basic to advanced levels for effective interaction with LLMs.
-* Introduce the "Proptimizer" solution—an automated prompt optimization tool running on a Serverless architecture on AWS.
+*   **Mastering Communication**: Explore the art of directing AI (Prompting) and methods to enhance the response quality of Large Language Models (LLMs).
+*   **Analyzing Errors**: Highlight the critical role of prompt design and the negative consequences of generic, unoptimized prompts.
+*   **Skill Building**: Provide a structural framework and techniques from basic to advanced levels to maximize AI interaction quality.
+*   **Application Showcase**: Introduce the "Proptimizer" tool—an automated prompt optimization extension built on an AWS Serverless architecture.
 
-### Speakers
+### 2. Presenter
 
-* **Nguyen Tuan Thinh** - DevOps/Cloud Engineer, member of the First Cloud AI Journey project.
+*   **Speaker**: **Nguyen Tuan Thinh** (DevOps/Cloud Engineer, member of the First Cloud AI Journey project).
 
-### Key Highlights
+### 3. Core Insights & Topics
 
-#### 1. Negative Impacts of Poor-Quality Prompts
-* **Generic Results:** Using generic prompts will only yield generic responses from the AI.
-* **Wasted Costs:** Token waste due to verbose and unoptimized prompts significantly increases operating costs.
-* **Inconsistency:** Ambiguous instructions cause the AI to return inconsistent results across runs.
-* **Reduced Productivity:** Inefficient communication with AI wastes time spent revising and regenerating responses.
+#### A. The Real Cost of Poor-Quality Prompts
+*   **Superficial Content**: Sending a generic prompt will only yield shallow, generic responses from the AI.
+*   **Financial Waste**: Using verbose, repetitive prompts results in unnecessary token consumption, raising API billing costs.
+*   **Result Inconsistency**: Vague instructions cause the AI to generate inconsistent answers across different runs.
+*   **Time Loss**: Spending valuable time revising answers and request regenerations manually lowers overall productivity.
 
-#### 2. Cấu trúc của một câu lệnh chuẩn (Great Prompt Structure)
-A high-quality prompt should include the following core components:
-* **Role:** The role the AI should assume (e.g., Career Consultant).
-* **Instruction:** The specific task the AI needs to perform.
-* **Context:** Relevant background information.
-* **Input Data:** The raw data or text to be processed.
-* **Output Format:** The structure, format, and tone of the expected output.
-* **Examples:** Sample inputs and outputs (few-shot prompting) to guide the AI.
-* **Constraints/Guidelines:** Limitations (length, words to avoid, specific areas to focus on).
+#### B. The Standard Great Prompt Structure
+A high-quality prompt must be organized systematically using the following components:
+1.  **Role**: Establish the persona for the AI (e.g., Security Analysis Expert).
+2.  **Instruction**: Precisely define what the AI needs to execute.
+3.  **Context**: Background information that helps the AI understand the task's environment.
+4.  **Input Data**: The raw text or data to be processed.
+5.  **Output Format**: Expected structure of the output (JSON, Markdown, Table...).
+6.  **Examples**: Provide few-shot sample pairs to guide the AI on tone and style.
+7.  **Constraints**: The rules the AI must follow (e.g., maximum length, terms to avoid).
 
-#### 3. Token Economics
-* **The Concept of Tokens:** LLMs process text based on tokens (sub-word units). The number of tokens consumed varies by language (Vietnamese typically consumes more tokens than English for the same meaning).
-* **Cost Discrepancy:** Input tokens are significantly cheaper than output tokens (e.g., input tokens cost around \$5 per million, while output tokens can cost up to \$25 per million).
+#### C. Token Economics
+*   **Definition**: LLMs process text in sub-word units called tokens. Notably, accented languages like Vietnamese consume significantly more tokens than English for the same meaning.
+*   **Cost Management**: Processing input tokens is much cheaper than generating output tokens; thus, optimizing response length is critical for controlling API expenses.
 
-#### 4. Advanced Prompting Techniques
-* **Chain-of-Thought (CoT):** Directs the AI to explain its step-by-step reasoning logic before presenting the final answer.
-* **Self-Consistency:** Combines with CoT to run multiple independent reasoning paths and select the most common and logical answer.
-* **Tree-of-Thoughts (ToT):** Structures reasoning as a decision tree to evaluate multiple optimal paths.
-* Techniques such as **Retrieval-Augmented Generation (RAG)** and **Role Prompting**.
+#### D. Specialized Prompting Methods
+*   **Chain-of-Thought (CoT)**: Prompt the AI to explain its step-by-step reasoning logic before showing the final result.
+*   **Self-Consistency**: Run multiple independent reasoning paths in parallel and select the answer with the highest consensus.
+*   **Tree-of-Thoughts (ToT)**: Model reasoning as a decision tree to evaluate and choose optimal analysis branches.
+*   Integrating **RAG** (Retrieval-Augmented Generation) and **Role Prompting**.
 
-#### 5. Proptimizer Architecture
-The Proptimizer solution is a browser extension that automates prompt optimization, built 100% Serverless on AWS with extremely optimized infrastructure costs:
-* **Frontend & Distribution:** Uses AWS CloudFront (CDN) combined with Amazon S3 to store and distribute static web content.
-* **Authentication & API:** Amazon Cognito manages user identities; Amazon API Gateway routes traffic and AWS Lambda processes backend logic without server management.
-* **AI & Data Integration:** Connects to multiple AI models (Claude, GPT) via Amazon Bedrock, while storing prompt history at high speed using Amazon DynamoDB.
-* **Monitoring:** Manages application logs and performance metrics using Amazon CloudWatch.
+#### E. Proptimizer Solution Architecture
+Proptimizer is a browser extension that automates prompt optimization, running 100% Serverless on AWS to minimize operating costs:
+*   **Static Distribution**: Uses Amazon S3 for frontend storage combined with Amazon CloudFront as a CDN for global delivery.
+*   **API Orchestration**: Uses Amazon Cognito for identity management, Amazon API Gateway for routing, and AWS Lambda to run backend logic without server maintenance.
+*   **AI Integration & Databases**: Accesses foundation models (Claude, GPT) via Amazon Bedrock, and stores prompt history at high speed using DynamoDB.
+*   **System Monitoring**: Uses Amazon CloudWatch to collect logs and monitor performance.
 
-### Key Takeaways
+### 4. Technical Takeaways & Action Plan
 
-#### Design Mindset
-* **Focus on Positive Instructions:** Clearly describe what the AI **should do** (DOs) instead of only listing what it should not do (DON'Ts).
-* **Structural Optimization:** Use clear delimiters to separate parts of the prompt and break down long inputs to help the AI ingest information.
-* **Hallucination Prevention:** Instruct the AI to respond with "I don't know" if the source data is missing, and avoid assigning complex mathematical calculations directly to raw LLMs.
+#### Prompt Design Principles
+*   Focus on positive instructions (DOs) that guide the AI on what to do, rather than vague negative warnings (DON'Ts).
+*   Optimize prompt layout using clear delimiters (such as `---`, `###`) and split long input files.
+*   Reduce hallucinations by instructing the AI to say "I don't know" when information is missing.
 
-#### Technical Architecture
-* Understood how to integrate AWS cloud infrastructure with Generative AI applications.
-* Learned to use **Amazon Bedrock** as a secure API gateway to access multiple foundation models.
-* Designed **NoSQL DynamoDB** database tables optimized for prompt history queries with single-digit millisecond latency.
+#### Cloud System Techniques
+*   Understand the integration methods between AWS Serverless infrastructure and Generative AI models.
+*   Leverage **Amazon Bedrock** as a secure, centralized API gateway to manage connections to multiple foundation model vendors.
+*   Design **DynamoDB** tables optimized for prompt history queries with single-digit millisecond latency.
 
-#### Applying to Work
-* **Apply the 7-component prompt structure** to daily interactions with AI to maximize accuracy.
-* **Optimize Token Costs:** Write concise instructions and eliminate redundant words to reduce unnecessary token consumption.
-* **Leverage Advanced Prompting:** Apply Chain-of-Thought (CoT) to tasks requiring logical analysis and code review.
-* **Design Serverless Applications:** Formulate plans to develop internal helper tools utilizing Serverless architecture (S3, Lambda, Bedrock).
+#### Actions at Work
+*   **Apply the 7-component prompt structure** in daily AI interactions to maximize response quality.
+*   **Reduce Operating Costs**: Refine prompt wording to save unnecessary token consumption.
+*   **Utilize CoT** for source code analysis and code logic reviews.
+*   **Develop Internal Tools**: Plan the creation of internal automation tools utilizing Serverless architectures (S3, Lambda, Bedrock).
 
-### Event Experience
+### 5. Personal Observations & Hands-On Experience
 
-#### Learning from Experts
-* Gained a combined perspective of software engineering and model prompting, helping clarify the flow of building products integrated with GenAI.
+#### Perspective from the Expert
+*   The presentation offered a complete view of combining software engineering with AI prompting, clarifying the development pipeline of practical GenAI integrations.
 
-#### Visual Learning
-* Visualized the reasoning process of advanced prompting techniques through clear CoT and ToT diagrams.
-* Absorbed the real-world architectural design of the Proptimizer solution on AWS.
+#### Visual Exposure
+*   Visualized the execution paths of CoT and ToT techniques through clear structural diagrams.
+*   Grasped the real-world architectural design of the Proptimizer solution deployed on AWS.
 
-#### Lessons Learned
-* Prompt Engineering skills are key to unlocking the practical potential of AI; optimized prompts maximize work efficiency.
-* Serverless architecture on AWS is an excellent fit for AI projects due to its minimal startup cost (\$0) and seamless scalability.
+#### Key Takeaway
+*   Prompt Engineering is not just about asking questions, but the key to unlocking AI's practical value in daily work.
+*   AWS Serverless is highly suited for AI integrations due to its minimal initial cost (\$0) and seamless scaling capabilities.
 
-> Overall, the event helped me significantly improve my prompt design skills and expanded my mindset for building efficient AI products on the cloud.
+> The event provided valuable insights, improving my prompt design skills and expanding my mindset for building efficient AI products on the cloud.

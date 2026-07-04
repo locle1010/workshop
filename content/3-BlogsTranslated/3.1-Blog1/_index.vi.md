@@ -7,7 +7,9 @@ pre: " <b> 3.1. </b> "
 ---
 # Trải nghiệm Amazon Nova Act: Tự động hóa UI bằng AI, không lo fix XPath
 
-![Amazon Nova Act](Blog1_photo.jpg)
+> **Bài viết gốc:** [AWS Study Group - FCJ](https://www.facebook.com/groups/awsstudygroupfcj/posts/2175053513259609)
+
+![Amazon Nova Act](/images/3-BlogsTranslated/Blog1_photo.jpg)
 
 Xin chào mọi người! Hôm nay mình muốn chia sẻ với mọi người về một dịch vụ automation mình mới tìm thấy và tìm hiểu được gần đây. Chuyện là mình đang sấp mặt với cái task viết script automation để test đống UI cho cái project nhóm. Khổ cái là bên thằng Frontend cứ update giao diện liên tục, làm cái script Selenium của mình cứ chạy được một tí, update xong lại lăn ra chết vì không tìm thấy Selector hay XPath. Trong lúc đang lười không muốn làm nữa mình tìm thấy được Amazon Nova Act. Ban đầu mình cũng tưởng là bọc cái prompt quanh Selenium thôi chứ có gì đâu. Nhưng sau khi nghịch thử để giải quyết cái task của mình thì nó khác biệt hoàn toàn. Hôm nay mình sẽ review chi tiết cho mọi người về "con hàng" cực kỳ hứa hẹn này nhé.
 

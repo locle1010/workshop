@@ -7,7 +7,9 @@ pre: " <b> 3.2. </b> "
 ---
 # Combining Amazon Cognito and Amazon Verified Permissions for Fine-grained Access Control
 
-![Amazon Cognito & Amazon Verified Permissions](Blog2_photo.jpg)
+> **Original Post:** [AWS Study Group - FCJ](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2185975575500736)
+
+![Amazon Cognito & Amazon Verified Permissions](/images/3-BlogsTranslated/Blog2_photo.jpg)
 
 Hello AWS Study Group VN members!
 

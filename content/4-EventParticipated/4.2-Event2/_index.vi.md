@@ -7,81 +7,81 @@ pre: " <b> 4.2. </b> "
 ---
 # BÀI THU HOẠCH: AUTOMATED PROMPT ENGINEERING - ENHANCING LLM OUTPUT QUALITY
 
-### Mục Đích Của Sự Kiện
+### 1. Buổi chia sẻ tập trung vào điều gì?
 
-* Chia sẻ nghệ thuật giao tiếp với AI (The Art of Communicating with AI) và các phương pháp tối ưu chất lượng đầu ra của các Mô hình Ngôn ngữ Lớn (LLM).
-* Chỉ ra tầm quan trọng của việc thiết kế câu lệnh (Prompt Engineering) và tác hại của việc đặt câu lệnh sai cách.
-* Cung cấp các cấu trúc, nguyên tắc và kỹ thuật từ cơ bản đến nâng cao để tương tác hiệu quả với LLM.
-* Giới thiệu giải pháp "Proptimizer" - tự động hóa việc tối ưu prompt cùng kiến trúc hệ thống Serverless trên đám mây AWS.
+*   **Làm chủ kỹ thuật giao tiếp**: Khai phá nghệ thuật ra lệnh cho AI (Prompting) và những giải pháp cải thiện chất lượng dữ liệu phản hồi từ các mô hình LLM.
+*   **Phân tích lỗi sai**: Chỉ rõ tầm quan trọng của việc xây dựng câu lệnh và những tác động không tốt khi thiết lập prompt sơ sài, thiếu khoa học.
+*   **Trang bị kỹ năng**: Cung cấp bộ khung cấu trúc và kỹ thuật viết prompt từ cơ bản đến nâng cao để tối ưu hóa tương tác với AI.
+*   **Giới thiệu ứng dụng**: Giới thiệu công cụ tự động hóa tối ưu prompt mang tên "Proptimizer" cùng thiết kế hệ thống Serverless trên cloud AWS.
 
-### Danh Sách Diễn Giả
+### 2. Diễn giả đồng hành
 
-* **Nguyễn Tuấn Thịnh** - DevOps/Cloud Engineer, thành viên dự án First Cloud AI Journey.
+*   **Người chia sẻ**: **Nguyễn Tuấn Thịnh** (DevOps/Cloud Engineer thuộc dự án First Cloud AI Journey).
 
-### Nội Dung Nổi Bật
+### 3. Tóm tắt các chủ đề cốt lõi
 
-#### 1. Ảnh hưởng tiêu cực của câu lệnh (Prompt) kém chất lượng
-* **Kết quả chung chung:** Sử dụng câu lệnh chung chung (Generic prompt) sẽ chỉ nhận về câu trả lời chung chung từ AI.
-* **Tốn kém chi phí:** Sự lãng phí token do viết prompt dài dòng, thiếu tối ưu sẽ làm tăng chi phí vận hành.
-* **Thiếu tính nhất quán:** Các chỉ dẫn mơ hồ khiến AI trả về kết quả không đồng nhất giữa các lần chạy.
-* **Giảm năng suất:** Việc giao tiếp kém hiệu quả với AI gây lãng phí thời gian sửa đổi câu trả lời.
+#### A. Những tổn thất khi sử dụng Prompt kém chất lượng
+*   **Nội dung hời hợt**: Gửi đi câu lệnh chung chung (Generic prompt) sẽ chỉ nhận lại câu trả lời nông và thiếu giá trị thực tiễn.
+*   **Lãng phí tài chính**: Sử dụng prompt dài dòng, lặp ý gây hao phí token không cần thiết, làm tăng hóa đơn chi phí API.
+*   **Kết quả bất ổn định**: Prompt thiếu rõ ràng khiến AI phản hồi không đồng nhất trong những lần chạy khác nhau.
+*   **Tổn hao thời gian**: Mất nhiều thời gian để chỉnh sửa thủ công và yêu cầu AI sinh lại kết quả, làm giảm đáng kể hiệu suất làm việc.
 
-#### 2. Cấu trúc của một câu lệnh chuẩn (Great Prompt)
-Một câu lệnh chất lượng cần bao gồm các thành phần cốt lõi sau:
-* **Role:** Vai trò AI cần đóng vai (ví dụ: Chuyên gia tư vấn nghề nghiệp).
-* **Instruction:** Nhiệm vụ cụ thể cần AI thực hiện.
-* **Context:** Thông tin ngữ cảnh nền tảng.
-* **Input Data:** Dữ liệu đầu vào cần xử lý.
-* **Output Format:** Định dạng, cấu trúc và văn phong đầu ra.
-* **Examples:** Các ví dụ mẫu (kỹ thuật few-shot) để AI định hình kết quả.
-* **Constraints/Guidelines:** Các giới hạn (độ dài, những từ cần tránh, việc tập trung...).
+#### B. Cấu trúc chuẩn hóa của một câu lệnh (Great Prompt)
+Một prompt chất lượng cao cần được tổ chức chặt chẽ theo bộ khung gồm:
+1.  **Role (Vai trò)**: Thiết lập tư cách cho AI (ví dụ: Chuyên gia phân tích bảo mật).
+2.  **Instruction (Chỉ thị)**: Mô tả chính xác việc AI cần thực hiện.
+3.  **Context (Ngữ cảnh)**: Thông tin nền giúp AI hiểu sâu hơn về bối cảnh tác vụ.
+4.  **Input Data (Dữ liệu đầu vào)**: Nội dung thô cần được xử lý.
+5.  **Output Format (Định dạng đầu ra)**: Yêu cầu về cấu trúc trình bày (JSON, Markdown, Bảng...).
+6.  **Examples (Ví dụ mẫu)**: Đưa ra các mẫu few-shot để AI học theo phong cách mong muốn.
+7.  **Constraints (Ràng buộc)**: Các quy tắc cần tuân thủ (ví dụ: độ dài tối đa, những điều không được phép làm).
 
-#### 3. Kinh tế học Token (Token Economics)
-* **Khái niệm Token:** LLM xử lý văn bản dựa trên token (đơn vị nhỏ hơn từ). Số lượng token tiêu thụ khác nhau tùy theo ngôn ngữ (tiếng Việt thường tốn nhiều token hơn tiếng Anh).
-* **Chênh lệch chi phí:** Chi phí cho token đầu vào (Input) rẻ hơn nhiều so với token đầu ra (Output). (Ví dụ: token đầu vào khoảng \$5/1 triệu tokens, trong khi token đầu ra lên tới \$25/1 triệu tokens).
+#### C. Bài toán kinh tế Token (Token Economics)
+*   **Định nghĩa**: LLM không xử lý ký tự trực tiếp mà chia nhỏ văn bản thành các token. Đáng chú ý, các ngôn ngữ có dấu như tiếng Việt sẽ tốn nhiều token hơn đáng kể so với tiếng Anh.
+*   **Cơ cấu chi phí**: Chi phí xử lý token đầu vào (Input) thường rẻ hơn rất nhiều so với token đầu ra (Output), nên việc tối ưu hóa nội dung trả về là cực kỳ cần thiết để kiểm soát chi phí.
 
-#### 4. Các kỹ thuật Prompt nâng cao (Advanced Techniques)
-* **Chain-of-Thought (CoT):** Hướng dẫn AI suy luận và giải thích từng bước logic trước khi đưa ra kết quả.
-* **Self-Consistency:** Kết hợp CoT để AI chạy nhiều luồng suy nghĩ độc lập và chọn ra đáp án phổ biến, hợp lý nhất.
-* **Tree-of-Thoughts (ToT):** Suy luận dưới dạng cây quyết định để đánh giá nhiều hướng đi tối ưu.
-* Các kỹ thuật **Retrieval-Augmented Generation (RAG)** và **Role Prompting**.
+#### D. Các phương pháp Prompting chuyên sâu
+*   **Chain-of-Thought (CoT)**: Kích thích AI giải thích tiến trình suy luận logic từng bước trước khi đưa ra kết quả cuối cùng.
+*   **Self-Consistency**: Cho LLM chạy nhiều luồng suy nghĩ độc lập song song để so sánh và lựa chọn kết quả có độ đồng thuận cao nhất.
+*   **Tree-of-Thoughts (ToT)**: Xây dựng cấu trúc lập luận dạng cây để đánh giá và lựa chọn các nhánh phân tích tối ưu.
+*   Ứng dụng kỹ thuật **RAG** (Retrieval-Augmented Generation) và **Role Prompting**.
 
-#### 5. Kiến trúc hệ thống tối ưu hóa (Proptimizer Architecture)
-Giải pháp Proptimizer là một tiện ích mở rộng trình duyệt giúp tối ưu hóa prompt, được xây dựng 100% Serverless trên AWS với chi phí hạ tầng cực kỳ tối ưu:
-* **Frontend & Phân phối:** Sử dụng AWS CloudFront (CDN) kết hợp Amazon S3 để lưu trữ và phân phối nội dung tĩnh.
-* **Xác thực & API:** Amazon Cognito quản lý định danh người dùng; Amazon API Gateway điều phối traffic và AWS Lambda xử lý các tác vụ logic mà không cần duy trì máy chủ.
-* **Tích hợp AI & Dữ liệu:** Kết nối với các mô hình AI (Claude, GPT) qua Amazon Bedrock, đồng thời lưu trữ lịch sử prompt tốc độ cao bằng Amazon DynamoDB.
-* **Giám sát:** Quản lý log và hiệu năng bằng Amazon CloudWatch.
+#### E. Thiết kế kiến trúc giải pháp Proptimizer
+Proptimizer là tiện ích mở rộng trên trình duyệt giúp tối ưu hóa prompt tự động, sử dụng toàn bộ mô hình Serverless trên AWS để tiết kiệm tối đa chi phí vận hành:
+*   **Phân phối tĩnh**: Sử dụng Amazon S3 lưu trữ Frontend kết hợp Amazon CloudFront làm CDN phân phối toàn cầu.
+*   **Điều phối API**: Dùng Amazon Cognito để quản lý người dùng, Amazon API Gateway định tuyến và AWS Lambda chạy xử lý backend không cần duy trì máy chủ.
+*   **Xử lý AI & Lưu trữ**: Gọi các mô hình LLM (Claude, GPT) thông qua Amazon Bedrock, lưu trữ lịch sử prompt truy vấn nhanh với DynamoDB.
+*   **Theo dõi hệ thống**: Sử dụng Amazon CloudWatch để ghi nhận log và giám sát hiệu năng.
 
-### Những Gì Học Được
+### 4. Đúc kết bài học & Hướng triển khai thực tế
 
-#### Tư Duy Thiết Kế
-* **Tập trung vào chỉ dẫn tích cực:** Cần mô tả cụ thể những việc **NÊN LÀM (DOs)** thay vì chỉ cấm đoán các việc KHÔNG NÊN (DON'Ts).
-* **Tối ưu hóa cấu trúc:** Sử dụng các dấu phân cách (Delimiters) để phân tách rõ ràng các phần của prompt và chia nhỏ văn bản đầu vào dài để AI dễ tiếp nhận.
-* **Chống bịa đặt (Hallucination):** Cho phép AI trả lời "Tôi không biết" nếu không tìm thấy dữ liệu chính xác, và tránh giao các phép tính toán học phức tạp trực tiếp cho LLM thuần túy.
+#### Tư duy thiết kế câu lệnh
+*   Nên tập trung vào các chỉ thị mang tính khẳng định (DOs) để hướng dẫn AI làm gì, thay vì chỉ sử dụng các câu phủ định (DON'Ts) chung chung.
+*   Tối ưu hóa cấu trúc prompt bằng cách sử dụng các ký tự phân tách rõ ràng (như `---`, `###`) và chia nhỏ các tài liệu đầu vào quá dài.
+*   Hạn chế ảo giác (Hallucination) bằng cách cho phép AI báo cáo "Tôi không biết" nếu thông tin bị thiếu hụt.
 
-#### Kiến Trúc Kỹ Thuật
-* Hiểu sâu cơ chế tích hợp công nghệ hạ tầng AWS với ứng dụng Generative AI.
-* Biết cách sử dụng **Amazon Bedrock** làm cổng kết nối API bảo mật tới nhiều mô hình ngôn ngữ lớn khác nhau.
-* Cách thiết kế cơ sở dữ liệu **NoSQL DynamoDB** tối ưu cho các truy vấn lưu trữ lịch sử prompt với độ trễ phần nghìn giây.
+#### Kỹ thuật hệ thống đám mây
+*   Hiểu rõ phương pháp tích hợp hạ tầng AWS Serverless với các mô hình Generative AI.
+*   Vận dụng **Amazon Bedrock** làm cổng kết nối tập trung, an toàn để quản lý API đến nhiều nhà cung cấp mô hình khác nhau.
+*   Thiết kế bảng **DynamoDB** tối ưu cho các truy vấn lịch sử prompt với độ trễ siêu thấp dưới 10ms.
 
-#### Ứng Dụng Vào Công Việc
-* **Áp dụng cấu trúc Prompt 7 thành phần** vào các hoạt động tương tác hàng ngày với AI để tối đa hóa độ chính xác.
-* **Tối ưu chi phí token:** Tinh gọn các câu chỉ thị, loại bỏ từ thừa để giảm lượng token tiêu thụ.
-* **Ứng dụng Advanced Prompting:** Áp dụng Chain-of-Thought (CoT) vào các tác vụ cần phân tích logic và review mã nguồn.
-* **Thiết kế ứng dụng Serverless:** Lên ý tưởng phát triển các tool hỗ trợ nội bộ dựa trên kiến trúc Serverless (S3, Lambda, Bedrock).
+#### Kế hoạch hành động tại nơi làm việc
+*   **Áp dụng cấu trúc 7 thành phần** vào công việc tương tác hàng ngày với AI để có câu trả lời chất lượng nhất.
+*   **Giảm chi phí vận hành**: Tinh giản tối đa câu chữ của prompt để tiết kiệm lượng token tiêu thụ.
+*   **Ứng dụng kỹ thuật CoT** trong việc phân tích mã nguồn và kiểm tra logic code.
+*   **Thiết kế ứng dụng nội bộ**: Lên kế hoạch xây dựng các tool tự động hóa nội bộ trên nền tảng Serverless (S3, Lambda, Bedrock).
 
-### Trải nghiệm trong event
+### 5. Cảm nhận và Trải nghiệm thực tế
 
-#### Học hỏi từ chuyên gia
-* Bài thuyết trình mang lại góc nhìn kết hợp thực tế giữa lập trình ứng dụng (engineering) và giao tiếp với mô hình AI (prompting), giúp hiểu rõ quy trình phát triển sản phẩm tích hợp GenAI.
+#### Góc nhìn từ kỹ sư chia sẻ
+*   Bài nói chuyện mang lại cái nhìn toàn diện khi kết hợp khéo léo giữa tư duy lập trình hệ thống (Engineering) và nghệ thuật giao tiếp với mô hình AI (Prompting), giúp tôi hiểu rõ quy trình phát triển một sản phẩm GenAI thực tế.
 
 #### Trải nghiệm trực quan
-* Hình dung rõ nét cơ chế suy luận của các kỹ thuật nâng cao thông qua sơ đồ trực quan của CoT và ToT.
-* Tiếp thu luồng kiến trúc thực tế của giải pháp Proptimizer trên môi trường AWS.
+*   Hình dung rõ nét cách hoạt động của CoT và ToT thông qua các sơ đồ tư duy trực quan.
+*   Nắm bắt được sơ đồ kiến trúc thực tế của giải pháp Proptimizer chạy trên nền tảng đám mây AWS.
 
-#### Bài học rút ra
-* Kỹ năng Prompt Engineering là chìa khóa mở ra tiềm năng thực tế của AI; tối ưu hóa câu lệnh giúp tối đa hóa hiệu suất làm việc.
-* Kiến trúc Serverless trên AWS là lựa chọn hoàn hảo cho các dự án AI nhỏ và vừa nhờ chi phí khởi tạo thấp (\$0) và khả năng tự động mở rộng linh hoạt.
+#### Bài học tâm đắc
+*   Prompt Engineering không đơn thuần là đặt câu hỏi, mà là chiếc chìa khóa tối ưu hóa sức mạnh của AI trong công việc.
+*   Mô hình Serverless trên AWS là lựa chọn cực kỳ lý tưởng cho các giải pháp tích hợp AI quy mô nhỏ nhờ chi phí ban đầu gần như bằng 0 và khả năng tự động mở rộng mượt mà.
 
-> Tổng thể, sự kiện giúp tôi nâng cao đáng kể kỹ năng thiết kế câu lệnh và mở rộng tư duy xây dựng các sản phẩm AI hiệu quả trên nền tảng đám mây.
+> Sự kiện đã mang lại cho tôi những kiến thức vô cùng bổ ích, giúp nâng cao kỹ năng thiết kế câu lệnh và mở ra tư duy xây dựng các sản phẩm AI hiệu quả trên cloud.
