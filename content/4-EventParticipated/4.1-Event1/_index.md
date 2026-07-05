@@ -14,7 +14,7 @@ pre: " <b> 4.1. </b> "
 *   **Technical Focus**: Dive deep into the mechanics of AI Agents and how to use the Model Context Protocol (MCP) to allow AI to interact directly with external applications.
 *   **Design Mindset**: Inspire developers with a "product-driven" mindset focused on solving real-world customer problems.
 
-### II. Expert Speaker
+### II. Speaker
 
 *   **Speaker**: **Hai An** (Cloud Consultant at C Pacific Vietnam).
 

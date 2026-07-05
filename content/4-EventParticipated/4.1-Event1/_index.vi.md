@@ -14,7 +14,7 @@ pre: " <b> 4.1. </b> "
 *   **Làm rõ kỹ thuật**: Phân tích sâu cơ chế hoạt động của mô hình Agent, đồng thời giới thiệu giao thức Model Context Protocol (MCP) giúp AI kết nối trực tiếp với ứng dụng ngoại vi.
 *   **Định hình tư duy**: Khơi dậy tinh thần "product-driven" cho các lập trình viên, hướng tới việc xây dựng các giải pháp giải quyết trực tiếp nhu cầu khách hàng.
 
-### II. Chuyên gia chia sẻ
+### II. Diễn giả
 
 *   **Diễn giả**: **Hải An** (Cloud Consultant tại C Pacific Việt Nam).
 

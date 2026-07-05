@@ -7,18 +7,18 @@ pre: " <b> 4.3. </b> "
 ---
 # SUMMARY REPORT: BUILDING ENTERPRISE-GRADE AI VOICE AGENTS AT SCALE
 
-### Problem Statement & Objectives
+### I. Problem Statement & Objectives
 
 *   **Voice Interaction Integration**: Deliver a comprehensive overview of the inner workings of Voice AI and how to set up voice channels for artificial intelligence systems.
 *   **Overcoming Vietnamese Language Constraints**: Analyze the specific challenges of processing Vietnamese (a low-resource language) in highly demanding business domains like banking and finance.
 *   **Standardizing Systems**: Establish infrastructure design standards to transition a Voice Agent from a proof-of-concept (POC) to a production environment.
 *   **Fostering Trust**: Focus on designing natural conversations, robust security, and maintaining the reliability of automated systems.
 
-### Key Speakers
+### II. Speakers
 
 *   **Presenters**: **Hieu Nghi**, **Kiet**, and **Trung Do**.
 
-### Architectural Analysis & Tech Solutions
+### III. Architectural Analysis & Tech Solutions
 
 #### 1. Decoupled Architecture for Low-Resource Languages
 *   Since most speech-to-speech models are optimized for English, applying them directly to Vietnamese poses significant hurdles. The optimal solution is utilizing a decoupled three-part architecture: **Speech-to-Text (STT) -> LLM Text Processing -> Text-to-Speech (TTS)**.
@@ -33,7 +33,7 @@ pre: " <b> 4.3. </b> "
 *   **Latency Optimization**: Turnaround time is critical for voice-based experiences. Therefore, STT, LLM, and TTS must run as continuous streaming pipelines instead of waiting to process complete audio blocks.
 *   **Smart Fallback (Human-in-the-Loop)**: The system monitors caller sentiment and keywords to identify cases where the AI is struggling (such as customer anger), seamlessly routing the call to a human representative without interrupting the session.
 
-### Design Philosophy & Optimization Mindset
+### IV. Design Philosophy & Optimization Mindset
 
 #### App Design Philosophy
 *   Successful AI systems must prioritize user experience, respecting human communication culture and daily speech habits.
@@ -47,7 +47,7 @@ pre: " <b> 4.3. </b> "
 *   **Upgrading Voice Interfaces**: Utilize the STT-LLM-TTS workflow to research voice control features in mobile apps to support hands-free user operations.
 *   **Resource Efficiency**: Apply data streaming and latency reduction practices to AWS cloud platforms to build highly scalable, fast-responding automation flows.
 
-### Demo Review & Practical Insights
+### V. Demo Review & Practical Insights
 
 #### Expert Interaction
 *   The session provided real-world perspective on taking a simple toy AI voice demo to an enterprise-grade Voice Agent system serving millions of banking customers.

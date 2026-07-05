@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 3. </b> "
 ---
 
-Tại đây sẽ là phần liệt kê, giới thiệu các blogs mà các bạn đã dịch. Ví dụ:
-
 ###  [Blog 1 - Trải nghiệm Amazon Nova Act: Tự động hóa UI bằng AI, không lo fix XPath](3.1-Blog1/)
 Blog này chia sẻ trải nghiệm thực tế về Amazon Nova Act, một dịch vụ AI Automation mới của AWS giúp xây dựng các Agent tự động tương tác trình duyệt thông qua câu lệnh ngôn ngữ tự nhiên tiếng Anh. Bài viết đi sâu phân tích cơ chế hoạt động bằng Học sâu tăng cường (Reinforcement Learning), hướng dẫn các bước lập trình hybrid (kết hợp Python SDK và AI lệnh) và phương pháp deploy mở rộng hạ tầng Fleet an toàn trên Cloud.
 

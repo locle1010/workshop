@@ -7,18 +7,18 @@ pre: " <b> 4.2. </b> "
 ---
 # SUMMARY REPORT: AUTOMATED PROMPT ENGINEERING - ENHANCING LLM OUTPUT QUALITY
 
-### 1. Focus of the Session
+### I. Event Objectives & Target
 
 *   **Mastering Communication**: Explore the art of directing AI (Prompting) and methods to enhance the response quality of Large Language Models (LLMs).
 *   **Analyzing Errors**: Highlight the critical role of prompt design and the negative consequences of generic, unoptimized prompts.
 *   **Skill Building**: Provide a structural framework and techniques from basic to advanced levels to maximize AI interaction quality.
 *   **Application Showcase**: Introduce the "Proptimizer" tool—an automated prompt optimization extension built on an AWS Serverless architecture.
 
-### 2. Presenter
+### II. Speaker
 
 *   **Speaker**: **Nguyen Tuan Thinh** (DevOps/Cloud Engineer, member of the First Cloud AI Journey project).
 
-### 3. Core Insights & Topics
+### III. Key Technical Highlights
 
 #### A. The Real Cost of Poor-Quality Prompts
 *   **Superficial Content**: Sending a generic prompt will only yield shallow, generic responses from the AI.
@@ -53,7 +53,7 @@ Proptimizer is a browser extension that automates prompt optimization, running 1
 *   **AI Integration & Databases**: Accesses foundation models (Claude, GPT) via Amazon Bedrock, and stores prompt history at high speed using DynamoDB.
 *   **System Monitoring**: Uses Amazon CloudWatch to collect logs and monitor performance.
 
-### 4. Technical Takeaways & Action Plan
+### IV. Acquired Knowledge & Application
 
 #### Prompt Design Principles
 *   Focus on positive instructions (DOs) that guide the AI on what to do, rather than vague negative warnings (DON'Ts).
@@ -71,7 +71,7 @@ Proptimizer is a browser extension that automates prompt optimization, running 1
 *   **Utilize CoT** for source code analysis and code logic reviews.
 *   **Develop Internal Tools**: Plan the creation of internal automation tools utilizing Serverless architectures (S3, Lambda, Bedrock).
 
-### 5. Personal Observations & Hands-On Experience
+### V. On-Site Practical Experience
 
 #### Perspective from the Expert
 *   The presentation offered a complete view of combining software engineering with AI prompting, clarifying the development pipeline of practical GenAI integrations.

@@ -7,18 +7,18 @@ pre: " <b> 4.2. </b> "
 ---
 # BÀI THU HOẠCH: AUTOMATED PROMPT ENGINEERING - ENHANCING LLM OUTPUT QUALITY
 
-### 1. Buổi chia sẻ tập trung vào điều gì?
+### I. Mục tiêu & Định hướng Sự kiện
 
 *   **Làm chủ kỹ thuật giao tiếp**: Khai phá nghệ thuật ra lệnh cho AI (Prompting) và những giải pháp cải thiện chất lượng dữ liệu phản hồi từ các mô hình LLM.
 *   **Phân tích lỗi sai**: Chỉ rõ tầm quan trọng của việc xây dựng câu lệnh và những tác động không tốt khi thiết lập prompt sơ sài, thiếu khoa học.
 *   **Trang bị kỹ năng**: Cung cấp bộ khung cấu trúc và kỹ thuật viết prompt từ cơ bản đến nâng cao để tối ưu hóa tương tác với AI.
 *   **Giới thiệu ứng dụng**: Giới thiệu công cụ tự động hóa tối ưu prompt mang tên "Proptimizer" cùng thiết kế hệ thống Serverless trên cloud AWS.
 
-### 2. Diễn giả đồng hành
+### II. Diễn giả
 
 *   **Người chia sẻ**: **Nguyễn Tuấn Thịnh** (DevOps/Cloud Engineer thuộc dự án First Cloud AI Journey).
 
-### 3. Tóm tắt các chủ đề cốt lõi
+### III. Điểm nhấn nội dung chuyên môn
 
 #### A. Những tổn thất khi sử dụng Prompt kém chất lượng
 *   **Nội dung hời hợt**: Gửi đi câu lệnh chung chung (Generic prompt) sẽ chỉ nhận lại câu trả lời nông và thiếu giá trị thực tiễn.
@@ -53,7 +53,7 @@ Proptimizer là tiện ích mở rộng trên trình duyệt giúp tối ưu hó
 *   **Xử lý AI & Lưu trữ**: Gọi các mô hình LLM (Claude, GPT) thông qua Amazon Bedrock, lưu trữ lịch sử prompt truy vấn nhanh với DynamoDB.
 *   **Theo dõi hệ thống**: Sử dụng Amazon CloudWatch để ghi nhận log và giám sát hiệu năng.
 
-### 4. Đúc kết bài học & Hướng triển khai thực tế
+### IV. Kiến thức tiếp thu và Khả năng ứng dụng
 
 #### Tư duy thiết kế câu lệnh
 *   Nên tập trung vào các chỉ thị mang tính khẳng định (DOs) để hướng dẫn AI làm gì, thay vì chỉ sử dụng các câu phủ định (DON'Ts) chung chung.
@@ -71,7 +71,7 @@ Proptimizer là tiện ích mở rộng trên trình duyệt giúp tối ưu hó
 *   **Ứng dụng kỹ thuật CoT** trong việc phân tích mã nguồn và kiểm tra logic code.
 *   **Thiết kế ứng dụng nội bộ**: Lên kế hoạch xây dựng các tool tự động hóa nội bộ trên nền tảng Serverless (S3, Lambda, Bedrock).
 
-### 5. Cảm nhận và Trải nghiệm thực tế
+### V. Góc nhìn thực tế tại sự kiện
 
 #### Góc nhìn từ kỹ sư chia sẻ
 *   Bài nói chuyện mang lại cái nhìn toàn diện khi kết hợp khéo léo giữa tư duy lập trình hệ thống (Engineering) và nghệ thuật giao tiếp với mô hình AI (Prompting), giúp tôi hiểu rõ quy trình phát triển một sản phẩm GenAI thực tế.

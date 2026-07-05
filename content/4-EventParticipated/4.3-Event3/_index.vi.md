@@ -7,18 +7,18 @@ pre: " <b> 4.3. </b> "
 ---
 # BÀI THU HOẠCH: XÂY DỰNG TRỢ LÝ GIỌNG NÓI AI (VOICE AGENTS) QUY MÔ LỚN
 
-### Đặt vấn đề & Mục tiêu
+### I. Đặt vấn đề & Mục tiêu
 
 *   **Tích hợp tương tác thoại**: Cung cấp bức tranh toàn cảnh về cơ chế vận hành của Voice AI và cách thiết lập các cổng giao tiếp giọng nói cho hệ thống trí tuệ nhân tạo.
 *   **Giải bài toán tiếng Việt**: Phân tích những khó khăn đặc thù khi xử lý tiếng Việt (một ngôn ngữ ít tài nguyên) trong môi trường nghiệp vụ đòi hỏi độ chính xác cao như tài chính - ngân hàng.
 *   **Tiêu chuẩn hóa hệ thống**: Xác định các nguyên tắc thiết kế hạ tầng để chuyển giao một Voice Agent từ mô hình thử nghiệm nhỏ (POC) sang môi trường vận hành thực tế (Production).
 *   **Tạo dựng niềm tin**: Định hướng xây dựng luồng hội thoại tự nhiên, bảo mật cao và duy trì độ tin cậy của dịch vụ tự động.
 
-### Đội ngũ chuyên gia
+### II. Diễn giả
 
 *   **Các diễn giả điều phối**: **Hiếu Nghị**, **Kiệt**, và **Trung Đỗ**.
 
-### Phân tích kiến trúc & Giải pháp công nghệ
+### III. Phân tích kiến trúc & Giải pháp công nghệ
 
 #### 1. Kiến trúc phân rã (Decoupled Architecture) cho tiếng Việt
 *   Vì các mô hình Speech-to-Speech đa số được huấn luyện tối ưu cho tiếng Anh, việc áp dụng trực tiếp cho tiếng Việt thường gặp nhiều rào cản. Giải pháp tối ưu là sử dụng mô hình 3 thành phần độc lập: **Speech-to-Text (STT) -> LLM xử lý văn bản -> Text-to-Speech (TTS)**.
@@ -33,7 +33,7 @@ pre: " <b> 4.3. </b> "
 *   **Tối thiểu hóa Latency**: Tốc độ phản hồi là yếu tố cốt lõi quyết định trải nghiệm thoại. Do đó, các thành phần STT, LLM và TTS phải được triển khai theo cơ chế truyền phát liên tục (streaming) thay vì đợi xử lý hết cả gói thông tin.
 *   **Cơ chế chuyển tiếp thông minh (Human-in-the-loop)**: Hệ thống tự động giám sát thái độ và nội dung cuộc gọi để phát hiện các trường hợp quá tải của AI (ví dụ như khi khách hàng tức giận), từ đó chủ động chuyển hướng cuộc gọi sang cho tổng đài viên con người mà không gây đứt gãy trải nghiệm.
 
-### Nhận thức thiết kế & Định hướng tối ưu hóa
+### IV. Nhận thức thiết kế & Định hướng tối ưu hóa
 
 #### Triết lý thiết kế ứng dụng
 *   Công nghệ AI chỉ thành công khi hướng tới việc nâng cao trải nghiệm người dùng, thấu hiểu văn hóa và thói quen giao tiếp đời thường của con người.
@@ -47,7 +47,7 @@ pre: " <b> 4.3. </b> "
 *   **Cải thiện giao diện thoại**: Vận dụng luồng kiến trúc STT-LLM-TTS để nghiên cứu phát triển tính năng điều khiển bằng giọng nói trên các ứng dụng di động, hỗ trợ tương tác rảnh tay.
 *   **Tối ưu hóa tài nguyên**: Áp dụng các giải pháp xử lý streaming và tối ưu độ trễ vào các hệ thống triển khai trên AWS để đảm bảo khả năng chịu tải tốt và phản hồi nhanh chóng.
 
-### Đánh giá Demo & Thực chứng công nghệ
+### V. Đánh giá Demo & Thực chứng công nghệ
 
 #### Trải nghiệm cùng chuyên gia
 *   Buổi chia sẻ đem đến góc nhìn thực chiến sâu sắc về hành trình đưa một bản demo AI đơn giản trở thành hệ thống Voice Agent phục vụ hàng triệu người dùng trong ngành tài chính.

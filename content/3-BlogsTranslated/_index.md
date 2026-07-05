@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 3. </b> "
 ---
 
-This section will list and introduce the blogs you have translated. For example:
-
 ###  [Blog 1 - Experiencing Amazon Nova Act: AI-Powered UI Automation Without XPath Worries](3.1-Blog1/)
 This blog shares hands-on experience with Amazon Nova Act, a new AI Automation service by AWS that enables building Agents to interact with browsers using natural language in English. It details how the service leverages Reinforcement Learning, explains how to write hybrid code (combining Python SDK with AI commands), and covers secure deployment on cloud Fleet infrastructure.
 

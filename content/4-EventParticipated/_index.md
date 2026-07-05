@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship, I participated in 3 events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with practical lessons and wonderful moments.
-
 ### [Event 1 - Workflow Automation with Amazon Q and MCP](4.1-Event1/)
 
 &emsp;**Event Name:** FCAJ Community Day
