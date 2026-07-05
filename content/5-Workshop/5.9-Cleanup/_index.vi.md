@@ -1,9 +1,9 @@
 ---
 title: "Dọn dẹp tài nguyên"
 date: 2026-07-04
-weight: 8
+weight: 9
 chapter: false
-pre: " <b> 5.8. </b> "
+pre: " <b> 5.9. </b> "
 ---
 
 #### Tổng quan
@@ -125,6 +125,87 @@ aws cognito-idp delete-user-pool \
 
 ---
 
+### Bước 7: Xóa Secrets Manager & KMS Key
+
+```bash
+# Xóa Secret (không có thời gian chờ phục hồi để xóa ngay lập tức)
+aws secretsmanager delete-secret \
+  --secret-id "ai-assistant/gemini-key" \
+  --force-delete-without-recovery \
+  --region ap-southeast-1
+
+# Lên lịch xóa KMS Key (tối thiểu 7 ngày)
+aws kms schedule-key-deletion \
+  --key-id <Your-KMS-Key-Id> \
+  --pending-window-in-days 7 \
+  --region ap-southeast-1
+```
+
+![Xóa Secrets Manager & KMS Key](/images/5-Workshop/5.8-Cleanup/5.8.12.png)
+---
+
+### Bước 8: Xóa CodePipeline & CodeBuild
+
+```bash
+# Xóa Pipeline
+aws codepipeline delete-pipeline \
+  --name "ai-assistant-deployment-pipeline" \
+  --region ap-southeast-1
+
+# Xóa CodeBuild Projects
+aws codebuild delete-project --name "ai-assistant-backend-build" --region ap-southeast-1
+aws codebuild delete-project --name "ai-assistant-frontend-build" --region ap-southeast-1
+```
+![Xóa CodePipeline & CodeBuild](/images/5-Workshop/5.8-Cleanup/5.8.13.png)
+---
+
+### Bước 9: Xóa AWS Backup Plan & Backup Vault
+
+```bash
+# Xóa Resource Assignment trước
+# Lấy Selection ID của Resource Assignment để xóa:
+aws backup list-backup-selections \
+  --backup-plan-id <BackupPlanId> \
+  --region ap-southeast-1
+
+aws backup delete-backup-selection \
+  --backup-plan-id <BackupPlanId> \
+  --selection-id <SelectionId> \
+  --region ap-southeast-1
+
+# Xóa Backup Plan
+aws backup delete-backup-plan \
+  --backup-plan-id <BackupPlanId> \
+  --region ap-southeast-1
+
+# Xóa Backup Vault (phải xóa các Recovery Points bên trong trước)
+aws backup delete-backup-vault \
+  --backup-vault-name "AIAssistantBackupVault" \
+  --region ap-southeast-1
+```
+![Xóa AWS Backup Plan & Vault](/images/5-Workshop/5.8-Cleanup/5.8.14.png)
+---
+
+### Bước 10: Hủy kích hoạt GuardDuty & AWS Config
+
+```bash
+# Hủy kích hoạt GuardDuty (Xóa detector)
+aws guardduty delete-detector \
+  --detector-id <DetectorId> \
+  --region ap-southeast-1
+
+# Xóa cấu hình recorder và channel của AWS Config
+aws configservice delete-configuration-recorder \
+  --configuration-recorder-name default \
+  --region ap-southeast-1
+
+aws configservice delete-delivery-channel \
+  --delivery-channel-name default \
+  --region ap-southeast-1
+```
+![Hủy kích hoạt GuardDuty & AWS Config](/images/5-Workshop/5.8-Cleanup/5.8.15.png)
+---
+
 ### Kiểm tra dọn dẹp hoàn tất
 
 ```bash
@@ -148,4 +229,4 @@ aws cognito-idp list-user-pools \
 
 Tất cả các lệnh trên phải trả về kết quả rỗng `[]` là đã dọn dẹp hoàn tất.
 
-![Xác nhận tất cả tài nguyên đã được xóa](/images/5-Workshop/5.8-Cleanup/5.8.12.png)
+![Xác nhận tất cả tài nguyên đã được xóa](/images/5-Workshop/5.8-Cleanup/5.8.16.png)

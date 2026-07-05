@@ -9,7 +9,7 @@ pre: " <b> 5.3. </b> "
 #### Overview
 
 In this step, you will create:
-+ **Amazon Cognito User Pool** — handles registration, login, and JWT token verification
++ **Amazon Cognito User Pool** — handles registration, login, and JWT token authentication
 + **Amazon DynamoDB Table** — stores all application data using Single-Table Design
 
 ---
@@ -29,9 +29,9 @@ aws cognito-idp create-user-pool \
   --output text
 ```
 
- **Save the `UserPoolId`** (format: `ap-southeast-1_XXXXXXXXX`)
+ **Save the `UserPoolId`** (e.g., `ap-southeast-1_XXXXXXXXX`)
 
-![User Pool created successfully](/images/5-Workshop/5.3-Database/5.3.1.png)
+![UserPool created successfully](/images/5-Workshop/5.3-Database/5.3.1.png)
 
 #### Create App Client
 
@@ -62,12 +62,12 @@ aws cognito-idp create-user-pool-domain \
   --user-pool-id <UserPoolId>
 ```
 
-![Create Cognito Domain](/images/5-Workshop/5.3-Database/5.3.3.png)
+![Cognito Domain created](/images/5-Workshop/5.3-Database/5.3.3.png)
 
-After creation, the Hosted UI will be available at:
+Once created, the Hosted UI address will be:
 `https://ai-assistant-auth.auth.ap-southeast-1.amazoncognito.com`
 
-**Verify:**
+**Verify details:**
 ```bash
 aws cognito-idp describe-user-pool \
   --user-pool-id <UserPoolId> \
@@ -78,9 +78,9 @@ aws cognito-idp describe-user-pool \
 ![Verify User Pool](/images/5-Workshop/5.3-Database/5.3.4.png)
 
 **[AWS Console]:**
-> + Go to [Cognito Console](https://ap-southeast-1.console.aws.amazon.com/cognito/v2/home)
+> + Go to the [Cognito Console](https://ap-southeast-1.console.aws.amazon.com/cognito/v2/home)
 
-![Cognito Console](/images/5-Workshop/5.3-Database/5.3.5.png)
+![Cognito Console Home](/images/5-Workshop/5.3-Database/5.3.5.png)
 
 > + **User pools** → **Create user pool**
 
@@ -97,17 +97,17 @@ aws cognito-idp describe-user-pool \
 
 ![Review configuration](/images/5-Workshop/5.3-Database/5.3.8.png)
 
-![User Pool created successfully](/images/5-Workshop/5.3-Database/5.3.9.png)
+![User Pool created successfully via Console](/images/5-Workshop/5.3-Database/5.3.9.png)
 
 ---
 
 ### Amazon DynamoDB
 
-The AI Assistant project uses **Single-Table Design** — a single `AIAssistant` table stores all entities (User, Assistant Profile, ...) with keys `PK` (Partition Key) and `SK` (Sort Key).
+The AI Assistant project uses a **Single-Table Design** — a single `AIAssistant` table stores all entities (User, Assistant Profile, etc.) using a Partition Key (`PK`) and a Sort Key (`SK`).
 
 Example data structure:
 | PK | SK | Description |
-|----|----|----|
+|----|----|-------------|
 | `USER#123` | `PROFILE` | User information |
 | `USER#123` | `PET_PROFILE` | App configuration |
 
@@ -126,9 +126,9 @@ aws dynamodb create-table \
   --region ap-southeast-1
 ```
 
-> **PAY_PER_REQUEST** (on-demand): Suitable for workshops and small production — no need to provision throughput, only pay per request.
+> **PAY_PER_REQUEST** (on-demand): Best suited for workshops and small production environments — no need to configure provisioned throughput, pay only for what you request.
 
-![Create DynamoDB table](/images/5-Workshop/5.3-Database/5.3.10.png)
+![Create DynamoDB Table](/images/5-Workshop/5.3-Database/5.3.10.png)
 
 #### Verify Table is Ready
 
@@ -139,29 +139,80 @@ aws dynamodb describe-table \
   --query "Table.TableStatus"
 ```
 
-Wait until the output returns `"ACTIVE"`.
+Wait until the command returns `"ACTIVE"`.
 
-![DynamoDB table in ACTIVE state](/images/5-Workshop/5.3-Database/5.3.11.png)
+![DynamoDB table status ACTIVE](/images/5-Workshop/5.3-Database/5.3.11.png)
 
 **[AWS Console]:**
 > + Go to [DynamoDB Console](https://ap-southeast-1.console.aws.amazon.com/dynamodbv2/home)
 > + **Tables** → **Create table**
 
-![DynamoDB Console](/images/5-Workshop/5.3-Database/5.3.12.png)
+![DynamoDB Console Home](/images/5-Workshop/5.3-Database/5.3.12.png)
 
-![Create table via Console](/images/5-Workshop/5.3-Database/5.3.13.png)
+![Create Table via Console](/images/5-Workshop/5.3-Database/5.3.13.png)
 
 > + **Table name:** `AIAssistant`
 > + **Partition key:** `PK` (String)
 > + **Sort key:** `SK` (String)
 
-![Configure table keys](/images/5-Workshop/5.3-Database/5.3.14.png)
+![Configure Keys](/images/5-Workshop/5.3-Database/5.3.14.png)
 
 > + Click **Create table**
 
 ![Table created successfully](/images/5-Workshop/5.3-Database/5.3.15.png)
 
 ![DynamoDB table ready](/images/5-Workshop/5.3-Database/5.3.16.png)
+
+---
+
+### AWS Backup for DynamoDB
+
+To protect your database against accidental deletion or system failure, configure **AWS Backup** to automatically back up the `AIAssistant` DynamoDB table daily.
+
+#### 1. Create a Backup Vault (Secure Storage)
+
+A Backup Vault is a container that stores your backups securely.
+
+**Via AWS CLI:**
+```bash
+aws backup create-backup-vault \
+  --backup-vault-name "AIAssistantBackupVault" \
+  --region ap-southeast-1
+```
+
+#### 2. Create a Backup Plan
+
+A Backup Plan defines when backups should be run (e.g., daily) and how long they should be retained.
+
+**Via AWS Console (Recommended):**
+1. Search for and open the **AWS Backup** service in the Console.
+2. Select **Backup plans** -> **Create Backup plan**.
+3. Choose **Build a new plan**:
+   - **Backup plan name**: `ai-assistant-backup-plan`.
+4. Configure the **Backup rule**:
+   - **Rule name**: `DailyBackup`.
+   - **Backup vault**: Select the `AIAssistantBackupVault` created above.
+   - **Backup frequency**: Select **Daily**.
+   - **Retention period**: Select **Days** and enter `7` days (to automatically delete backups older than 7 days to save costs).
+5. Click **Create plan**.
+
+![Create Backup Plan](/images/5-Workshop/5.3-Database/5.3.17.png)
+
+#### 3. Assign the DynamoDB Table to the Backup Plan
+
+Once the plan is created, associate the DynamoDB table as the target resource for backups.
+
+**Via AWS Console:**
+1. In the details page of your new Backup Plan, scroll down to **Resource assignments** -> click **Assign resources**.
+2. Configure:
+   - **Resource assignment name**: `assign-dynamodb-table`.
+   - **IAM role**: Select **Default role**.
+   - **Assign resources**: Select **Include specific resource types**.
+   - **Select specific resource types**: Select **DynamoDB**.
+   - **Table name**: Select the `AIAssistant` table.
+3. Click **Assign resources** to complete.
+
+![Assign DynamoDB to Backup Plan](/images/5-Workshop/5.3-Database/5.3.18.png)
 
 ---
 

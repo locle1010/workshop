@@ -1,9 +1,9 @@
 ---
 title: "Cài đặt Unity App"
 date: 2026-07-04
-weight: 7
+weight: 8
 chapter: false
-pre: " <b> 5.7. </b> "
+pre: " <b> 5.8. </b> "
 ---
 
 #### Tổng quan
@@ -84,7 +84,7 @@ Script này xử lý đăng nhập Cognito và đồng bộ dữ liệu lên bac
 
 > Thay `<API_ID>` bằng ID endpoint lấy từ kết quả `serverless deploy` ở Bước 5.4.
 
-**Bước 4:** Lưu Scene bằng **Ctrl+S** (Windows) hoặc **Cmd+S** (macOS)
+**Bước 4:** Lưu Scene bằng **Ctrl+S** (Windows) or **Cmd+S** (macOS)
 
 ![Cập nhật API URL trong Unity Inspector](/images/5-Workshop/5.7-UnityApp/5.7.3.png)
 

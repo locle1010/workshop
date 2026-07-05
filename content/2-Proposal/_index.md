@@ -28,10 +28,11 @@ The AI Assistant application currently only runs locally on the user's computer 
 + A secure user authentication system
 + A Web interface for access from any device
 + Data synchronization between the Desktop App and Web
++ Automated pipeline for deployment (CI/CD), logging, auditing, and platform security baseline detection
 
 #### Solution
 
-Deploy the entire system to AWS with a Serverless architecture:
+Deploy the entire system to AWS with a Serverless architecture and secure practices:
 
 | Component | AWS Solution |
 |-----------|-------------|
@@ -41,12 +42,20 @@ Deploy the entire system to AWS with a Serverless architecture:
 | Image Storage | **Amazon S3** (Upload Bucket) |
 | Frontend Hosting | **Amazon S3** + **Amazon CloudFront** (CDN) |
 | Domain & SSL | **AWS Route 53** + **AWS ACM** (optional) |
+| IAM Principle of Least Privilege | **AWS IAM** — IAM Deployer & Service-Linked roles |
+| Secrets Management | **AWS KMS** + **AWS Secrets Manager** — Encrypt API Key |
+| Security Threat Detection | **Amazon GuardDuty** + **AWS Config** — Auditing and monitoring |
+| S3 Lifecycle Policy | **S3 Lifecycle Rules** — Auto-transition to S3 Glacier |
+| Web Application Firewall | **AWS WAF** — Protecting CloudFront CDN from web attacks |
+| Automated CI/CD | **AWS CodePipeline** + **AWS CodeBuild** — GitOps from GitHub |
+| Automated Database Backups | **AWS Backup** — Automated daily backup for DynamoDB |
+| Logging & Monitoring | **Amazon CloudWatch** — Log groups and alarms for Lambda |
 
 ---
 
 ### 3. System Architecture
 
-The AI Assistant system uses a Serverless architecture with the following AWS services:
+The AI Assistant system uses a Serverless architecture integrating all 17 AWS services:
 
 | Service | Role |
 |---------|------|
@@ -58,6 +67,16 @@ The AI Assistant system uses a Serverless architecture with the following AWS se
 | **Amazon CloudFront** | CDN for global Frontend distribution |
 | **AWS Route 53** | DNS management and custom domains |
 | **AWS ACM** | SSL/TLS Certificate for HTTPS |
+| **AWS IAM** | User access credentials and role configurations |
+| **AWS KMS** | Customer-managed key to encrypt secret strings |
+| **AWS Secrets Manager** | Secure storage and encryption of Google Gemini API Key |
+| **Amazon CloudWatch** | Logs ingestion and CloudWatch Alarm for error notification |
+| **Amazon GuardDuty** | Continuous security threat detection |
+| **AWS Config** | Resource auditing and configuration tracking |
+| **AWS WAF** | Web Access Control Lists protecting CloudFront CDN |
+| **AWS Backup** | Centralized backups coordinator for DynamoDB |
+| **AWS CodePipeline** | Release pipeline pipeline orchestrator |
+| **AWS CodeBuild** | Managed code compilation and deployment script runner |
 
 ![AI Assistant System Architecture](/images/2-Proposal/architec.jpg)
 
@@ -80,6 +99,7 @@ The AI Assistant system uses a Serverless architecture with the following AWS se
 + Integrate **Amazon DynamoDB** to store user data and AI assistant profiles
 + Integrate **Amazon S3** for the image upload feature
 + Integrate **Google Gemini API** for the AI chat feature
++ Integrate **AWS KMS** and **AWS Secrets Manager** to secure configuration credentials
 + Configure **Serverless Framework** to deploy Lambda and API Gateway
 
 #### Phase 3: Frontend & Desktop App Development
@@ -89,32 +109,41 @@ The AI Assistant system uses a Serverless architecture with the following AWS se
 + Configure the Unity Desktop App to connect to the Backend API and Cognito
 + Implement two-way data synchronization between Desktop App and Web App
 
-#### Phase 4: Deployment & Testing
+#### Phase 4: Deployment, Security & Automation
 
 + Deploy Backend to AWS Lambda via Serverless Framework
 + Deploy Frontend to S3 + CloudFront
-+ Test the end-to-end authentication flow (sign up, sign in, token refresh)
-+ Test AI chat functionality and data sync between both platforms
-+ Configure custom domain and SSL certificate (if applicable)
++ Configure custom domain and SSL certificate (Route 53 & ACM)
++ Configure **AWS CodePipeline** and **AWS CodeBuild** for automated CI/CD from GitHub `main` branch
++ Configure security layers using **Amazon GuardDuty**, **AWS Config**, and **AWS WAF**
++ Set up **AWS Backup** for DynamoDB and **CloudWatch Alarms** for error detection
 
 ---
 
 ### 5. Cost Estimation
 
-> Estimated costs are based on the AWS Pricing Calculator at low usage levels (workshop/personal use).
+> Detailed cost estimation exported from **AWS Pricing Calculator** based on experimental usage levels (Calculator ID: `c964d0cc-491c-4141-a922-fa56a58fae21`).
 
-| Service | Estimated Cost |
-|---------|---------------|
-| **AWS Lambda** | $0.00/month (< 1M requests/month free tier) |
-| **API Gateway** | ~$0.01/month (1,000 requests) |
-| **Amazon DynamoDB** | $0.00/month (On-demand, under free tier) |
-| **Amazon S3** | ~$0.02/month (small storage) |
-| **Amazon CloudFront** | $0.00/month (first 1 TB free) |
-| **Amazon Cognito** | $0.00/month (first 50,000 MAU free) |
+| Service | Estimated Configuration Details | Estimated Cost (USD/month) |
+|---------|--------------------------------|---------------------------|
+| **AWS WAF** | 1 WebACL ($5.00) + 1 Rule ($1.00) + 1,000 requests | $6.00 |
+| **Amazon CloudFront** | 20 GB Outbound Data Transfer + 1,000 HTTPS Requests | $2.65 |
+| **Amazon CloudWatch** | 5 Custom Metrics ($1.50) + 2 Alarms ($0.20) + 0.15 GB Log storage | $1.70 |
+| **AWS CodePipeline** | 1 Active Pipeline | $1.00 |
+| **AWS Backup** | DynamoDB table backups (~7 GB-month Warm Storage) | $0.79 |
+| **Amazon Route 53** | 1 Hosted Zone ($0.50) + 1,000 DNS Queries | $0.50 |
+| **AWS Secrets Manager** | 1 Secret ($0.40) + 1,000 API Requests | $0.41 |
+| **AWS Config** | 50 Configuration Items Recorded + 10 Rule Evaluations | $0.16 |
+| **Amazon S3** | 5 GB-month Standard Storage + 1,000 Tier 1 Requests | $0.13 |
+| **AWS CodeBuild** | 10 build minutes (Linux ARM) | $0.02 |
+| **Amazon Cognito** | Cognito User Pool MAU tracking (1 MAU) | $0.01 |
+| **Amazon GuardDuty** | Analyze 1,000 S3 + CloudTrail log events | $0.01 |
+| **Amazon API Gateway** | 1,000 REST/HTTP API Requests | $0.01 |
+| **AWS Lambda** | 1,000 Requests (ARM64, 50 GB-seconds) | $0.00 (Within Free Tier) |
+| **AWS KMS** | 1,000 decrypt API key requests | $0.00 (Within Free Tier) |
+| **Amazon DynamoDB** | 10 GB Storage + 1,000 WCU + 500 RCU | $0.00 (Within Free Tier) |
 
-**Total:** ~$0.03–0.05 USD/month *(nearly free at low traffic)*
-
-> ⚠️ **Note:** Always delete resources after finishing the workshop to avoid unexpected charges.
+**Total Estimated Cost:** **~$13.39 USD/month**
 
 ---
 
@@ -124,21 +153,22 @@ The AI Assistant system uses a Serverless architecture with the following AWS se
 |------|-------|------------|
 | Cognito authentication flow complexity (OAuth 2.0, callback URL, token handling) | High | Study AWS Cognito documentation thoroughly; test each step in isolation |
 | Data sync inconsistency between Desktop App and Web | High | Design a clear API contract; use DynamoDB as the single source of truth |
-| Gemini API rate limits or unexpected response format changes | Medium | Implement robust error handling in Backend; provide fallback responses |
-| Unity REST client CORS issues with API Gateway | Medium | Configure CORS correctly from the start; test early before deep development |
-| Poor DynamoDB design making future scaling difficult | Medium | Analyze access patterns carefully before creating the table |
-| Unexpected cost spikes from sudden traffic increase | Low | Enable AWS Budget Alerts; monitor CloudWatch Metrics regularly |
+| Gemini API key exposure in public repository | High | Use AWS Secrets Manager and AWS KMS to encrypt and load the API key at runtime |
+| CI/CD pipeline deployment failures | Medium | Verify buildspec files locally; provision correct IAM permissions to CodeBuild role |
+| Unexpected costs from forgot-to-delete resources or traffic spikes | Medium | Configure AWS Budget Alerts; set up CloudWatch Alarms; run clean up in Step 5.9 |
 
 ---
 
 ### 7. Expected Outcomes
 
 + A complete **AI Assistant** system running on AWS Cloud with Serverless architecture
-+ **Web App** accessible from any device via CloudFront URL
++ **Web App** accessible from any device via CloudFront URL protected by AWS WAF
 + **Desktop App (Unity)** syncing data to the Cloud in real time
 + Users can **register and log in** securely via Cognito Hosted UI
-+ Operating costs **nearly zero** at personal usage levels
-+ Platform can be **easily scaled** as the number of users grows
++ **CI/CD Automated** deployments running instantly on Git push
++ **Data archive policies, backup, security audits, and secrets protection** configured cleanly
+
+---
 
 ### 8. Source Code & Live Demo
 

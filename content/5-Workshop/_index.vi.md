@@ -17,10 +17,11 @@ Toàn bộ các bước trong workshop này ưu tiên sử dụng **AWS CLI**. T
 #### Nội dung
 
 1. [Giới thiệu & Kiến trúc](5.1-Introduction/)
-2. [Chuẩn bị môi trường](5.2-Prerequisite/)
-3. [Thiết lập Cognito & DynamoDB](5.3-Database/)
-4. [Thiết lập S3 & Deploy Backend](5.4-Backend/)
-5. [Deploy Frontend lên CloudFront](5.5-Frontend/)
+2. [Chuẩn bị môi trường & Bảo mật nền tảng](5.2-Prerequisite/)
+3. [Thiết lập Cognito, DynamoDB & AWS Backup](5.3-Database/)
+4. [Thiết lập KMS, Secrets Manager, S3 & Deploy Backend](5.4-Backend/)
+5. [Deploy Frontend lên CloudFront & cấu hình AWS WAF](5.5-Frontend/)
 6. [Cấu hình Custom Domain (Tùy chọn)](5.6-Domain/)
-7. [Cài đặt Unity App](5.7-UnityApp/)
-8. [Dọn dẹp tài nguyên](5.8-Cleanup/)
+7. [Thiết lập CI/CD tự động](5.7-CICD/)
+8. [Cài đặt Unity App](5.8-UnityApp/)
+9. [Dọn dẹp tài nguyên](5.9-Cleanup/)

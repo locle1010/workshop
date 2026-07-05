@@ -1,9 +1,9 @@
 ---
 title: "Clean Up Resources"
 date: 2026-07-04
-weight: 8
+weight: 9
 chapter: false
-pre: " <b> 5.8. </b> "
+pre: " <b> 5.9. </b> "
 ---
 
 #### Overview
@@ -125,6 +125,96 @@ aws cognito-idp delete-user-pool \
 
 ---
 
+### Step 7: Delete AWS WAF Web ACL
+
+**Via AWS Console:**
+1. Navigate to the **WAF & Shield** console.
+2. Select **Web ACLs** -> Select the **Global (CloudFront)** region.
+3. Select `ai-assistant-waf` -> click **Delete**.
+*(Note: You must disassociate the CloudFront distribution from the Web ACL before you can delete it).*
+
+---
+
+### Step 8: Delete Secrets Manager Secret & KMS Key
+
+```bash
+# Delete Secret (force delete without recovery to delete immediately)
+aws secretsmanager delete-secret \
+  --secret-id "ai-assistant/gemini-key" \
+  --force-delete-without-recovery \
+  --region ap-southeast-1
+
+# Schedule KMS Key Deletion (minimum 7 days pending period)
+aws kms schedule-key-deletion \
+  --key-id <Your-KMS-Key-Id> \
+  --pending-window-in-days 7 \
+  --region ap-southeast-1
+```
+
+---
+
+### Step 9: Delete CodePipeline & CodeBuild
+
+```bash
+# Delete Pipeline
+aws codepipeline delete-pipeline \
+  --name "ai-assistant-deployment-pipeline" \
+  --region ap-southeast-1
+
+# Delete CodeBuild Projects
+aws codebuild delete-project --name "ai-assistant-backend-build" --region ap-southeast-1
+aws codebuild delete-project --name "ai-assistant-frontend-build" --region ap-southeast-1
+```
+
+---
+
+### Step 10: Delete AWS Backup Plan & Backup Vault
+
+```bash
+# Delete Resource Assignment first
+# Get the Selection ID of the resource assignment to delete:
+aws backup list-backup-selections \
+  --backup-plan-id <BackupPlanId> \
+  --region ap-southeast-1
+
+aws backup delete-backup-selection \
+  --backup-plan-id <BackupPlanId> \
+  --selection-id <SelectionId> \
+  --region ap-southeast-1
+
+# Delete Backup Plan
+aws backup delete-backup-plan \
+  --backup-plan-id <BackupPlanId> \
+  --region ap-southeast-1
+
+# Delete Backup Vault (must delete all recovery points inside first)
+aws backup delete-backup-vault \
+  --backup-vault-name "AIAssistantBackupVault" \
+  --region ap-southeast-1
+```
+
+---
+
+### Step 11: Disable GuardDuty & AWS Config
+
+```bash
+# Disable GuardDuty (Delete detector)
+aws guardduty delete-detector \
+  --detector-id <DetectorId> \
+  --region ap-southeast-1
+
+# Delete configuration recorder and delivery channel for AWS Config
+aws configservice delete-configuration-recorder \
+  --configuration-recorder-name default \
+  --region ap-southeast-1
+
+aws configservice delete-delivery-channel \
+  --delivery-channel-name default \
+  --region ap-southeast-1
+```
+
+---
+
 ### Verify Cleanup Complete
 
 ```bash
@@ -148,4 +238,4 @@ aws cognito-idp list-user-pools \
 
 All commands above must return empty `[]` results to confirm cleanup is complete.
 
-![Confirm all resources have been deleted](/images/5-Workshop/5.8-Cleanup/5.8.12.png)
+![Confirm all resources have been deleted](/images/5-Workshop/5.8-Cleanup/5.8.16.png)

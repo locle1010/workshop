@@ -17,10 +17,11 @@ All steps in this workshop prioritize using the **AWS CLI**. In cases where CLI 
 #### Content
 
 1. [Introduction & Architecture](5.1-Introduction/)
-2. [Environment Setup](5.2-Prerequisite/)
-3. [Setup Cognito & DynamoDB](5.3-Database/)
-4. [Setup S3 & Deploy Backend](5.4-Backend/)
-5. [Deploy Frontend to CloudFront](5.5-Frontend/)
+2. [Environment Setup & Security Baseline](5.2-Prerequisite/)
+3. [Setup Cognito, DynamoDB & AWS Backup](5.3-Database/)
+4. [Setup KMS, Secrets Manager, S3 & Deploy Backend](5.4-Backend/)
+5. [Deploy Frontend to CloudFront & Configure AWS WAF](5.5-Frontend/)
 6. [Configure Custom Domain (Optional)](5.6-Domain/)
-7. [Install Unity App](5.7-UnityApp/)
-8. [Clean Up Resources](5.8-Cleanup/)
+7. [Setup Automated CI/CD](5.7-CICD/)
+8. [Install Unity App](5.8-UnityApp/)
+9. [Clean Up Resources](5.9-Cleanup/)

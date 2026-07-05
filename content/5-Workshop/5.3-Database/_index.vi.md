@@ -165,6 +165,55 @@ Chờ cho đến khi output trả về `"ACTIVE"`.
 
 ---
 
+### AWS Backup cho DynamoDB
+
+Để bảo vệ cơ sở dữ liệu chống lại việc mất mát dữ liệu do vô tình xóa hoặc lỗi hệ thống, chúng ta sẽ thiết lập **AWS Backup** để tự động sao lưu bảng DynamoDB `AIAssistant` hàng ngày.
+
+#### 1. Tạo Backup Vault (Kho chứa bản sao lưu)
+
+Backup Vault là nơi lưu trữ an toàn cho các bản sao lưu.
+
+**CLI:**
+```bash
+aws backup create-backup-vault \
+  --backup-vault-name "AIAssistantBackupVault" \
+  --region ap-southeast-1
+```
+![Tạo Backup Vault thành công](/images/5-Workshop/5.3-Database/5.3.17.png)
+#### 2. Tạo Backup Plan (Kế hoạch sao lưu)
+
+Backup Plan định nghĩa thời gian sao lưu (ví dụ: hàng ngày) và thời gian lưu trữ (retention).
+
+**Console:**
+1. Tìm kiếm và mở dịch vụ **AWS Backup** trong Console.
+2. Chọn **Backup plans** -> **Create Backup plan**.
+![Tạo Backup plan](/images/5-Workshop/5.3-Database/5.3.18.png)
+3. Chọn **Build a new plan**:
+   - **Backup plan name**: `ai-assistant-backup-plan`.
+4. Cấu hình **Backup rule** (Quy tắc sao lưu):
+   - **Rule name**: `DailyBackup`.
+   - **Backup vault**: Chọn `AIAssistantBackupVault` vừa tạo ở trên.
+   - **Backup frequency**: Chọn **Daily** (Hàng ngày).
+   - **Point-in-time recovery (PITR):** Chọn **Enable**.
+   - **Retention period**: Chọn **Days** và điền `7` ngày (để tự động xóa bản sao lưu cũ sau 7 ngày nhằm tiết kiệm chi phí).
+   ![Cấu hình Backup rule](/images/5-Workshop/5.3-Database/5.3.19.png)
+   ![Thiết lập Retention period](/images/5-Workshop/5.3-Database/5.3.20.png)
+5. Nhấn **Create plan**.
+![Backup plan được tạo](/images/5-Workshop/5.3-Database/5.3.21.png)
+
+Sau khi có kế hoạch, cần chọn bảng DynamoDB làm tài nguyên đích để sao lưu.
+1. **Assign resources:**
+   - **Resource assignment name**: `assign-dynamodb-table`.
+   - **IAM role**: Chọn **Default role** (Vai trò mặc định).
+   - **Resource selection**: Chọn **Include specific resource types**.
+   - **Select specific resource types**: Chọn **DynamoDB**.
+   - **Table name**: Chọn bảng `AIAssistant`.
+![Chọn tài nguyên DynamoDB để backup](/images/5-Workshop/5.3-Database/5.3.22.png)
+2. Nhấn **Assign resources** để hoàn tất.
+![Gán tài nguyên thành công](/images/5-Workshop/5.3-Database/5.3.23.png)
+
+---
+
 #### Tóm tắt thông tin cần lưu lại
 
 Sau bước này, hãy ghi lại các thông tin sau để dùng cho các bước tiếp theo:

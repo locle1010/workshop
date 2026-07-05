@@ -191,6 +191,61 @@ Trang web AI Assistant phải hiển thị đầy đủ và hoạt động bình
 
 ---
 
+### Cấu hình Tự động Đóng gói & Lưu trữ dữ liệu tải lên (S3 Lifecycle Rules - Data Archive)
+
+Để tối ưu chi phí lưu trữ trên S3, các tệp tin hình ảnh tải lên bởi người dùng sau 30 ngày sẽ tự động được chuyển đổi sang kho lưu trữ **S3 Glacier Flexible Retrieval (Data Archive)** với mức phí rẻ hơn nhiều lần.
+
+Chúng ta sẽ thiết lập quy trình này cho bucket lưu trữ hình ảnh `ai-assistant-uploads` đã tạo ở Bước 5.4.
+
+**Thao tác qua AWS CLI:**
+
+1. Tạo file cấu hình vòng đời `lifecycle.json` ở thư mục dự án:
+```json
+{
+  "Rules": [
+    {
+      "ID": "ArchiveOldUploadsAfter30Days",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": ""
+      },
+      "Transitions": [
+        {
+          "Days": 30,
+          "StorageClass": "GLACIER"
+        }
+      ]
+    }
+  ]
+}
+```
+![Tạo file cấu hình vòng đời lifecycle.json](/images/5-Workshop/5.5-Frontend/5.5.20.1.png)
+2. Áp dụng cấu hình lên bucket `ai-assistant-uploads`:
+```bash
+aws s3api put-bucket-lifecycle-configuration \
+  --bucket ai-assistant-uploads \
+  --lifecycle-configuration file://lifecycle.json \
+  --region ap-southeast-1
+```
+![Áp dụng cấu hình Lifecycle lên bucket](/images/5-Workshop/5.5-Frontend/5.5.20.2.png)
+
+**Thao tác qua AWS Console:**
+1. Truy cập dịch vụ **S3** -> Chọn bucket **`ai-assistant-uploads`**.
+![Truy cập bucket trên S3 Console](/images/5-Workshop/5.5-Frontend/5.5.20.3.png)
+2. Chọn tab **Management** -> Tại mục **Lifecycle rules** chọn **Create lifecycle rule**.
+![Tạo Lifecycle rule](/images/5-Workshop/5.5-Frontend/5.5.20.4.png)
+3. Cấu hình:
+   - **Lifecycle rule name**: `ArchiveOldUploads`.
+   - **Choose a rule scope**: Chọn **Apply to all objects in the bucket** (Áp dụng toàn bộ tệp).
+   - Tích chọn **Transition current versions of objects between storage classes**.
+   ![Cấu hình Storage Class Transition](/images/5-Workshop/5.5-Frontend/5.5.20.5.png)
+   - Mục **Transition current versions of objects**:
+     - **Storage class transitions**: Chọn **Glacier Flexible Retrieval**.
+     - **Days after object creation**: Nhập `30` ngày.
+4. Nhấn **Create rule** để hoàn tất.
+![Lifecycle rule được tạo thành công](/images/5-Workshop/5.5-Frontend/5.5.20.6.png)
+---
+
 ### Cập nhật CORS Backend
 
 Bây giờ đã có CloudFront URL, cập nhật lại CORS cho Backend.

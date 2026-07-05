@@ -267,4 +267,38 @@ serverless --version
 
 ---
 
+#### Bảo mật nền tảng (Amazon GuardDuty & AWS Config)
+
+Để đảm bảo tài khoản AWS được bảo mật và giám sát liên tục trước các hành vi bất thường, hãy kích hoạt **Amazon GuardDuty** và **AWS Config**.
+
+##### 1. Kích hoạt Amazon GuardDuty (Phát hiện mối đe dọa)
+
+Amazon GuardDuty liên tục giám sát các hành vi đáng ngờ (ví dụ: đăng nhập lạ, tấn công mạng, đào tiền ảo trái phép) dựa trên log của tài khoản.
+
+**CLI:**
+```bash
+aws guardduty create-detector --enable --region ap-southeast-1
+```
+![Kích hoạt GuardDuty qua CLI](/images/5-Workshop/5.2-Prerequisite/5.2.19.png)
+
+
+**Console:**
+1. Tìm kiếm và mở dịch vụ **GuardDuty** trong AWS Web Console.
+2. Nhấn nút **Get started** -> chọn **Enable GuardDuty**.
+
+![Kích hoạt GuardDuty qua Console Step 1](/images/5-Workshop/5.2-Prerequisite/5.2.20.png)
+![Kích hoạt GuardDuty qua Console Step 2](/images/5-Workshop/5.2-Prerequisite/5.2.21.png)
+
+##### 2. Thiết lập AWS Config (Giám sát cấu hình tài nguyên)
+
+AWS Config theo dõi toàn bộ lịch sử thay đổi cấu hình tài nguyên AWS và so sánh với các chính sách bảo mật.
+
+**Console:**
+1. Tìm kiếm dịch vụ **AWSConfig** -> chọn **1-click setup**.
+![Thiết lập AWS Config Step 1](/images/5-Workshop/5.2-Prerequisite/5.2.22.png)
+2. Nhấn **Confirm** để hoàn tất.
+![Thiết lập AWS Config Step 2](/images/5-Workshop/5.2-Prerequisite/5.2.23.png)
+
+---
+
 Sau khi hoàn thành bước này, bạn đã sẵn sàng để bắt đầu thiết lập các dịch vụ AWS.

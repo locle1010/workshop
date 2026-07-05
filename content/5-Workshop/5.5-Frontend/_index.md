@@ -8,7 +8,7 @@ pre: " <b> 5.5. </b> "
 
 #### Overview
 
-In this step, you will build the React app and deploy it to **Amazon S3** combined with **Amazon CloudFront** (CDN) for fast and secure global delivery.
+In this step, you will build the React app and deploy it to **Amazon S3** combined with **Amazon CloudFront** (CDN) for fast and secure content delivery to users globally.
 
 ---
 
@@ -19,7 +19,7 @@ Navigate to the frontend directory:
 cd ../frontend
 ```
 
-Create `frontend/.env.production` with information from previous steps:
+Create a `frontend/.env.production` file using the information from the previous steps:
 
 ```env
 # --- API Backend URL (from Step 5.4) ---
@@ -32,7 +32,7 @@ VITE_COGNITO_CLIENT_ID=XXXXXXXXXXXXXXXXXXXXX
 VITE_COGNITO_DOMAIN=ai-assistant-auth.auth.ap-southeast-1.amazoncognito.com
 ```
 
-![Configure .env.production for Frontend](/images/5-Workshop/5.5-Frontend/5.5.1.png)
+![Configure frontend .env.production](/images/5-Workshop/5.5-Frontend/5.5.1.png)
 
 ---
 
@@ -43,13 +43,13 @@ npm install
 npm run build
 ```
 
-After building, the `frontend/dist/` directory will be created containing all optimized HTML, JS, and CSS files.
+After building, the `frontend/dist/` directory will be created, containing the optimized HTML, JS, and CSS files.
 
 ![Frontend built successfully](/images/5-Workshop/5.5-Frontend/5.5.2.png)
 
 ---
 
-### Create S3 Bucket for Frontend
+### Create Frontend S3 Bucket
 
 ```bash
 aws s3api create-bucket \
@@ -58,9 +58,9 @@ aws s3api create-bucket \
   --create-bucket-configuration LocationConstraint=ap-southeast-1
 ```
 
-> **Note:** This bucket will **not** be publicly accessible directly — only CloudFront is allowed to read files from it.
+> **Note:** This bucket will **not** be configured for public access — only CloudFront will have permissions to read files from it.
 
-![Create S3 Bucket for Frontend](/images/5-Workshop/5.5-Frontend/5.5.3.png)
+![Create Frontend S3 Bucket](/images/5-Workshop/5.5-Frontend/5.5.3.png)
 
 ---
 
@@ -68,7 +68,7 @@ aws s3api create-bucket \
 
 #### Step 1: Create Origin Access Control (OAC)
 
-OAC ensures only CloudFront can read files from the S3 bucket; direct access is blocked.
+OAC ensures only CloudFront can read files from your S3 bucket, preventing direct user access to the bucket.
 
 Create `oac-config.json`:
 
@@ -82,7 +82,7 @@ Create `oac-config.json`:
 }
 ```
 
-![Create oac-config.json file](/images/5-Workshop/5.5-Frontend/5.5.4.png)
+![Create oac-config.json](/images/5-Workshop/5.5-Frontend/5.5.4.png)
 
 ```bash
 aws cloudfront create-origin-access-control \
@@ -97,69 +97,69 @@ aws cloudfront create-origin-access-control \
 
 #### Step 2: Create Distribution
 
-> **Recommendation:** This step is best done via **AWS Console** as the JSON configuration is quite lengthy and complex.
+> **Recommendation:** Using the **AWS Console** is highly recommended for this step due to the complex JSON configuration structure.
 
-**[Recommended - AWS Console]:**
+**[AWS Console]:**
 
-Go to [CloudFront Console](https://console.aws.amazon.com/cloudfront/v3/home) → **Create distribution**
+Go to [CloudFront Console](https://console.aws.amazon.com/cloudfront/v3/home) → click **Create distribution**.
 
-![CloudFront Console](/images/5-Workshop/5.5-Frontend/5.5.6.png)
+![CloudFront Console Home](/images/5-Workshop/5.5-Frontend/5.5.6.png)
 
-Configure as follows:
+Configure the following:
 
 + **Choose a plan:** Select **Free**
 
-![Select Free plan](/images/5-Workshop/5.5-Frontend/5.5.7.png)
+![Select Free Plan](/images/5-Workshop/5.5-Frontend/5.5.7.png)
 
 + **Distribution name:** Enter `ai-assistant-frontend`
 
-![Enter Distribution name](/images/5-Workshop/5.5-Frontend/5.5.8.png)
+![Enter distribution name](/images/5-Workshop/5.5-Frontend/5.5.8.png)
 
 + **Specify origin:** Select **Amazon S3**
-+ **Origin:** click **Browse S3** → select bucket `ai-assistant-frontend-prod`
++ **Origin:** Click **Browse S3** → select the `ai-assistant-frontend-prod` bucket
 
 ![Configure S3 Origin](/images/5-Workshop/5.5-Frontend/5.5.9.png)
 
-![Select Frontend bucket](/images/5-Workshop/5.5-Frontend/5.5.10.png)
+![Select S3 Bucket](/images/5-Workshop/5.5-Frontend/5.5.10.png)
 
-![Origin configured successfully](/images/5-Workshop/5.5-Frontend/5.5.11.png)
+![S3 Origin applied](/images/5-Workshop/5.5-Frontend/5.5.11.png)
 
-+ **Enable security:** select **Use monitor mode**
++ **Enable security:** Select **Use monitor mode**
 
-![Configure security settings](/images/5-Workshop/5.5-Frontend/5.5.12.png)
+![Configure Web Application Firewall](/images/5-Workshop/5.5-Frontend/5.5.12.png)
 
 + Click **Create distribution**
 
 ![Create Distribution](/images/5-Workshop/5.5-Frontend/5.5.13.png)
 
- **Save:**
-- `Distribution ID` (format: `EXXXXXXXXXXXX`)
-- `Distribution Domain Name` (format: `dxxxx.cloudfront.net`)
+ **Record the following:**
+- `Distribution ID` (e.g., `EXXXXXXXXXXXX`)
+- `Distribution Domain Name` (e.g., `dxxxx.cloudfront.net`)
 
->  CloudFront takes **10–20 minutes** to deploy globally after creation.
+>  CloudFront takes **10–20 minutes** to deploy globally.
 
-![Distribution being created](/images/5-Workshop/5.5-Frontend/5.5.14.png)
+![Distribution status deploying](/images/5-Workshop/5.5-Frontend/5.5.14.png)
 
 ---
 
 ### Configure Error Pages for React Router (SPA)
 
-React uses Client-side routing. When users reload a sub-page (e.g., `/login`), S3 returns a `403` error because the file doesn't exist. You need to configure CloudFront to redirect to `index.html`.
+React uses client-side routing. When a user refreshes a sub-route (e.g., `/login`), S3 returns a `403` error because the file does not exist. We need CloudFront to redirect these requests to `index.html`.
 
-**Via Console:** CloudFront → Distribution → **Error pages** tab → **Create custom error response**
+**Via AWS Console:** CloudFront → select your Distribution → open **Error pages** tab → click **Create custom error response**.
 
 | HTTP error code | Customize? | Response page path | HTTP Response code |
 |-----------------|------------|-------------------|-------------------|
 | `403: Forbidden` | Yes | `/index.html` | `200: OK` |
 | `404: Not Found` | Yes | `/index.html` | `200: OK` |
 
-![Error pages tab](/images/5-Workshop/5.5-Frontend/5.5.15.png)
+![Error Pages Tab](/images/5-Workshop/5.5-Frontend/5.5.15.png)
 
 ![Create custom error response for 403](/images/5-Workshop/5.5-Frontend/5.5.16.png)
 
 ![Create custom error response for 404](/images/5-Workshop/5.5-Frontend/5.5.17.png)
 
-![Both error pages configured](/images/5-Workshop/5.5-Frontend/5.5.18.png)
+![Error responses configured successfully](/images/5-Workshop/5.5-Frontend/5.5.18.png)
 
 ---
 
@@ -170,45 +170,98 @@ cd ../frontend
 aws s3 sync dist/ s3://ai-assistant-frontend-prod --delete
 ```
 
-Output will show the list of files being uploaded:
+The output will display the uploaded files:
 ```
 upload: dist/index.html to s3://ai-assistant-frontend-prod/index.html
 upload: dist/assets/index-xxx.js to s3://ai-assistant-frontend-prod/assets/index-xxx.js
 ...
 ```
 
-![Upload Frontend to S3](/images/5-Workshop/5.5-Frontend/5.5.19.png)
+![Upload frontend to S3](/images/5-Workshop/5.5-Frontend/5.5.19.png)
 
 ---
 
-### Test Frontend
+### Verify Frontend
 
-Visit the CloudFront URL: `https://dxxxx.cloudfront.net`
+Access the CloudFront URL: `https://dxxxx.cloudfront.net`
 
-The AI Assistant website should display fully and work normally.
+The AI Assistant website should load and function normally.
 
-![AI Assistant website running successfully](/images/5-Workshop/5.5-Frontend/5.5.20.png)
+![Verify deployed website](/images/5-Workshop/5.5-Frontend/5.5.20.png)
+
+---
+
+### Configure Auto-archiving of Uploads (S3 Lifecycle Rules - Data Archive)
+
+To optimize storage costs on S3, objects uploaded by users can be moved to **S3 Glacier Flexible Retrieval (Data Archive)** automatically after 30 days.
+
+We will configure this lifecycle policy on the `ai-assistant-uploads` bucket created in Step 5.4.
+
+**Via AWS CLI:**
+
+1. Create a lifecycle configuration file named `lifecycle.json` at the root of the project:
+```json
+{
+  "Rules": [
+    {
+      "ID": "ArchiveOldUploadsAfter30Days",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": ""
+      },
+      "Transitions": [
+        {
+          "Days": 30,
+          "StorageClass": "GLACIER"
+        }
+      ]
+    }
+  ]
+}
+```
+
+2. Apply the configuration to the `ai-assistant-uploads` bucket:
+```bash
+aws s3api put-bucket-lifecycle-configuration \
+  --bucket ai-assistant-uploads \
+  --lifecycle-configuration file://lifecycle.json \
+  --region ap-southeast-1
+```
+
+**Via AWS Console:**
+1. Open the **S3** service -> click on the **`ai-assistant-uploads`** bucket.
+2. Select the **Management** tab -> under **Lifecycle rules**, click **Create lifecycle rule**.
+3. Configure:
+   - **Lifecycle rule name**: `ArchiveOldUploads`.
+   - **Rule scope**: Select **Apply to all objects in the bucket**.
+   - Check **Transition current versions of objects between storage classes**.
+   - Under **Transition current versions of objects**:
+     - **Storage class transitions**: Select **Glacier Flexible Retrieval**.
+     - **Days after object creation**: Enter `30` days.
+4. Click **Create rule** to complete.
+
+![Configure S3 Lifecycle Rule](/images/5-Workshop/5.5-Frontend/5.5.20.1.png)
 
 ---
 
 ### Update Backend CORS
 
-Now that you have the CloudFront URL, update the CORS settings for the Backend.
+Now that we have the CloudFront URL, update the CORS settings in the Backend environment configuration.
 
 Edit `backend/.env.production`:
 ```env
 FRONTEND_URL=https://dxxxx.cloudfront.net
 ```
 
-![Update FRONTEND_URL in .env.production](/images/5-Workshop/5.5-Frontend/5.5.21.png)
+![Update environment file](/images/5-Workshop/5.5-Frontend/5.5.21.png)
 
-Re-deploy Backend:
+Re-deploy the Backend:
 ```bash
 cd ../backend
 npx serverless deploy --stage prod
 ```
 
-![Re-deploy Backend with new CORS](/images/5-Workshop/5.5-Frontend/5.5.22.png)
+![Re-deploy backend](/images/5-Workshop/5.5-Frontend/5.5.22.png)
 
 ---
 
