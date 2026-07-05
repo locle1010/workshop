@@ -120,8 +120,6 @@ Hệ thống AI Assistant sử dụng kiến trúc Serverless tích hợp đầy
 
 ### 5. Ước tính chi phí
 
-> Chi phí ước tính chi tiết được xuất từ công cụ **AWS Pricing Calculator** dựa trên mức sử dụng thử nghiệm (mã cấu hình: `c964d0cc-491c-4141-a922-fa56a58fae21`).
-
 | Dịch vụ | Chi tiết cấu hình ước tính | Chi phí ước tính (USD/tháng) |
 |---------|----------------------------|----------------------------|
 | **AWS WAF** | 1 WebACL ($5.00) + 1 Rule ($1.00) + 1,000 requests | $6.00 |

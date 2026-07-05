@@ -122,8 +122,6 @@ The AI Assistant system uses a Serverless architecture integrating all 17 AWS se
 
 ### 5. Cost Estimation
 
-> Detailed cost estimation exported from **AWS Pricing Calculator** based on experimental usage levels (Calculator ID: `c964d0cc-491c-4141-a922-fa56a58fae21`).
-
 | Service | Estimated Configuration Details | Estimated Cost (USD/month) |
 |---------|--------------------------------|---------------------------|
 | **AWS WAF** | 1 WebACL ($5.00) + 1 Rule ($1.00) + 1,000 requests | $6.00 |
