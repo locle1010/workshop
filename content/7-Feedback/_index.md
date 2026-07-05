@@ -12,10 +12,10 @@ pre: " <b> 7. </b> "
 From my very first days at the AWS Vietnam office, I was deeply impressed by the working atmosphere, which is both dynamic and incredibly open. The modern design and flexible workspaces greatly boost focus. What I appreciate most is that everyone communicates on equal footing, without any generational gap or hierarchy. That said, having more events would help new members connect even faster.
 
 **2. Support from Mentor / Admin Team**  
-I feel very fortunate to have worked alongside a highly supportive and insightful mentor. Instead of simply handing over solutions when I ran into issues, my mentor patiently guided my problem-solving approach so that I could understand the underlying principles myself. Additionally, the admin team was exceptionally supportive, assisting with everything from hardware provisioning and documentation to administrative procedures, allowing me to fully focus on my project.
+I feel very fortunate to have worked alongside a highly supportive and insightful mentor, as well as the wonderful admin team who supported me throughout my internship. Instead of simply handing over solutions when I ran into issues, they patiently guided my independent thinking process so that I could find the root cause of the problems myself. Additionally, the admins were exceptionally supportive, assisting with everything from hardware provisioning and documentation to administrative procedures, allowing me to fully focus on my project.
 
 **3. Alignment Between Work and Academic Background**  
-This capstone project was the perfect intersection of the computer networks and database knowledge I studied at university with real-world cloud infrastructure. Directly connecting a website, a Unity Desktop App with a serverless backend API on the cloud helped me transform theoretical concepts into a fully functioning, operational product.
+This project was the perfect intersection of the computer networks and database knowledge I studied at university with real-world cloud infrastructure. Directly connecting a website, a Unity Desktop App with a serverless backend API on the cloud helped me transform theoretical concepts into a fully functioning, operational product.
 
 **4. Learning & Skill Development Opportunities**  
 The 12-week journey here has provided me with a wealth of knowledge. Beyond becoming familiar with core AWS services, I learned how to design cost-optimized architectures, troubleshoot issues in a production environment, and write clear, professional technical documentation—which is demonstrated through the creation of this very workshop.
@@ -24,7 +24,7 @@ The 12-week journey here has provided me with a wealth of knowledge. Beyond beco
 The company culture deeply reflects Amazon's Leadership Principles, most notably "Ownership" and "Learn and Be Curious." Despite being an intern, I was respected and empowered to make decisions regarding my project like a true builder. Everyone on the team was always ready to sit down and help troubleshoot whenever we hit a roadblock.
 
 **6. Intern Policies & Benefits**  
-The benefits and policies for interns are highly competitive and well worth the effort. In addition to the stipend, the company offered maximum flexibility with my schedule, allowing me to balance university exams with office work. The internal tech-sharing sessions were also an invaluable learning privilege.
+The benefits and policies for interns are highly competitive and well worth the effort. In addition, the company offered maximum flexibility with my schedule, allowing me to balance university exams with office work. The events and community days were also invaluable learning privileges.
 
 ---
 
@@ -32,11 +32,11 @@ The benefits and policies for interns are highly competitive and well worth the 
 
 **What were you most satisfied with during the internship?**
 
-It was the moment the entire system ran smoothly on AWS Cloud—from the React Web interface and the Unity Desktop game to the API Gateway + Lambda backend connected to the DynamoDB database. Seeing data from the Desktop App immediately synchronize with the Web App through a real cloud environment gave me a tremendous boost of confidence in my own technical abilities.
+It was the moment the entire system ran smoothly on AWS Cloud—from the React Web interface and the Unity Desktop app to the API Gateway + Lambda backend connected to the DynamoDB database. Seeing data from the Desktop App immediately synchronize with the Web App through a real cloud environment gave me a tremendous boost of confidence in my own technical abilities.
 
 **What do you think the company should improve for future interns?**
 
-I think the program could benefit from a brief Technical Onboarding session during the first week. This session could cover tools, coding standards, reporting workflows, and the primary AWS services expected to be used. This would help future interns avoid initial confusion and get up to speed with their projects much faster.
+I think the program could benefit from a brief, in-person Technical Onboarding session during the first week. This session could cover tools, coding standards, reporting workflows, and the primary AWS services expected to be used. This would help future interns avoid initial confusion and get up to speed with their projects much faster.
 
 **Would you recommend this internship to a friend?**
 
