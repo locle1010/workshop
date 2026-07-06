@@ -23,7 +23,7 @@ pre: " <b> 1.12. </b> "
 * **Kết quả chung:** Hệ thống đồ án tốt nghiệp vận hành trơn tru trên Cloud trực tuyến, tối ưu hóa bảo mật thành công và hoàn thiện báo cáo tổng kết.
 * **Đánh giá tuần:** Hoàn thành xuất sắc toàn bộ kỳ thực tập. Tự đánh giá đạt 100% khối lượng công việc, tích lũy được nhiều kinh nghiệm thực tế quý giá.
 * **Chi tiết kết quả thực hiện:**
-  * **Ngày 06/07/2026:** Ứng dụng đám mây liên kết mượt mà đúng logic nghiệp vụ bài toán.
+  * **Ngày 06/07/2026:** Ứng dụng và web liên kết mượt mà đúng logic nghiệp vụ bài toán.
   * **Ngày 07/07/2026:** Lỗi CORS được giải quyết triệt để, Frontend và Backend giao tiếp thông suốt.
   * **Ngày 08/07/2026:** Hạ tầng đạt tiêu chuẩn an toàn thông tin nghiêm ngặt, thắt chặt phân quyền.
   * **Ngày 09/07/2026:** Tốc độ phản hồi API cải thiện, chi phí hóa đơn tài nguyên cloud tối ưu rẻ nhất.

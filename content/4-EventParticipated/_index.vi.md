@@ -6,7 +6,28 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-### [Event 1 - Tự động hóa công việc với trợ lý AI Amazon Q và MCP](4.1-Event1/)
+### [Event 1 - Automated Prompt Engineering: Enhancing LLM Output Quality](4.1-Event1/)
+
+&emsp;**Tên sự kiện:** FCAJ Meet up
+
+&emsp;**Thời gian:** 09:00 ngày 09/05/2026
+
+&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+
+&emsp;**Vai trò trong sự kiện:** Người tham dự
+
+#### **Nội dung các phiên trình bày:**
+
+1.  **Chủ đề Hack não (Dopamin Gaming):**
+    *   Phương pháp biến kiến thức thành "canh bạc dopamin" nhằm đánh lừa não bộ, tạo động lực học tập bền bỉ như cách game và mạng xã hội vận hành.
+2.  **Chủ đề Tư duy và Định hướng nghề nghiệp (Foundation & Integrity):**
+    *   Tập trung vào kiến thức cốt lõi không đổi trong kỷ nguyên AI kết hợp với đức tính liêm chính và tư duy dài hạn.
+3.  **Chủ đề Phát triển phần mềm với AI (BMAD):**
+    *   Quy trình cấu trúc quản lý các AI agent (Build Method for AI Development) nhằm tối ưu hóa việc xây dựng app và giảm thiểu ảo giác (hallucination).
+
+---
+
+### [Event 2 - Tự động hóa công việc với trợ lý AI Amazon Q và MCP](4.2-Event2/)
 
 &emsp;**Tên sự kiện:** FCAJ Community Day
 
@@ -43,27 +64,6 @@ pre: " <b> 4. </b> "
     *   Sự không tương thích cấu trúc giữa hệ thống ngân hàng truyền thống và dữ liệu startup.
     *   Mô hình Multi-Agent và kiến trúc Ủy ban tín dụng ảo.
     *   Hệ thống kiểm soát (Guardrails), tính tuân thủ và bài toán hoàn vốn ROI.
-
----
-
-### [Event 2 - Automated Prompt Engineering: Enhancing LLM Output Quality](4.2-Event2/)
-
-&emsp;**Tên sự kiện:** FCAJ Community Day
-
-&emsp;**Thời gian:** 09:00 ngày 09/05/2026
-
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
-
-&emsp;**Vai trò trong sự kiện:** Người tham dự
-
-#### **Nội dung các phiên trình bày:**
-
-1.  **Chủ đề Hack não (Dopamin Gaming):**
-    *   Phương pháp biến kiến thức thành "canh bạc dopamin" nhằm đánh lừa não bộ, tạo động lực học tập bền bỉ như cách game và mạng xã hội vận hành.
-2.  **Chủ đề Tư duy và Định hướng nghề nghiệp (Foundation & Integrity):**
-    *   Tập trung vào kiến thức cốt lõi không đổi trong kỷ nguyên AI kết hợp với đức tính liêm chính và tư duy dài hạn.
-3.  **Chủ đề Phát triển phần mềm với AI (BMAD):**
-    *   Quy trình cấu trúc quản lý các AI agent (Build Method for AI Development) nhằm tối ưu hóa việc xây dựng app và giảm thiểu ảo giác (hallucination).
 
 ---
 

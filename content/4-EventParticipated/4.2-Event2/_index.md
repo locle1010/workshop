@@ -1,87 +1,69 @@
 ---
 title: "Event 2"
-date: 2026-05-09
+date: 2026-05-23
 weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
-# SUMMARY REPORT: AUTOMATED PROMPT ENGINEERING - ENHANCING LLM OUTPUT QUALITY
+# SUMMARY REPORT: WORKFLOW AUTOMATION WITH AMAZON Q AND MCP
 
 ### I. Event Objectives & Target
 
-*   **Mastering Communication**: Explore the art of directing AI (Prompting) and methods to enhance the response quality of Large Language Models (LLMs).
-*   **Analyzing Errors**: Highlight the critical role of prompt design and the negative consequences of generic, unoptimized prompts.
-*   **Skill Building**: Provide a structural framework and techniques from basic to advanced levels to maximize AI interaction quality.
-*   **Application Showcase**: Introduce the "Proptimizer" tool—an automated prompt optimization extension built on an AWS Serverless architecture.
+*   **Introduce Solution**: Introduce **Amazon Q**, a powerful AI assistant developed by AWS for end-users.
+*   **Optimize Performance**: Provide solutions to save time and automate reporting and operational workflows.
+*   **Technical Focus**: Dive deep into the mechanics of AI Agents and how to use the Model Context Protocol (MCP) to allow AI to interact directly with external applications.
+*   **Design Mindset**: Inspire developers with a "product-driven" mindset focused on solving real-world customer problems.
 
 ### II. Speaker
 
-*   **Speaker**: **Nguyen Tuan Thinh** (DevOps/Cloud Engineer, member of the First Cloud AI Journey project).
+*   **Speaker**: **Hai An** (Cloud Consultant at C Pacific Vietnam).
 
 ### III. Key Technical Highlights
 
-#### A. The Real Cost of Poor-Quality Prompts
-*   **Superficial Content**: Sending a generic prompt will only yield shallow, generic responses from the AI.
-*   **Financial Waste**: Using verbose, repetitive prompts results in unnecessary token consumption, raising API billing costs.
-*   **Result Inconsistency**: Vague instructions cause the AI to generate inconsistent answers across different runs.
-*   **Time Loss**: Spending valuable time revising answers and request regenerations manually lowers overall productivity.
+#### 1. User-Centric Design Principle
+*   Technology is merely a tool; the core of building a successful product is addressing the exact pain points of the users.
+*   Applying AI to automate data consolidation and weekly reporting helps managers save significant time.
 
-#### B. The Standard Great Prompt Structure
-A high-quality prompt must be organized systematically using the following components:
-1.  **Role**: Establish the persona for the AI (e.g., Security Analysis Expert).
-2.  **Instruction**: Precisely define what the AI needs to execute.
-3.  **Context**: Background information that helps the AI understand the task's environment.
-4.  **Input Data**: The raw text or data to be processed.
-5.  **Output Format**: Expected structure of the output (JSON, Markdown, Table...).
-6.  **Examples**: Provide few-shot sample pairs to guide the AI on tone and style.
-7.  **Constraints**: The rules the AI must follow (e.g., maximum length, terms to avoid).
+#### 2. Amazon Q Integration Ecosystem
+*   AWS builds an Agent platform that integrates closely with common enterprise systems like **Microsoft** (Word, Teams, Outlook, PowerPoint) and **Google** (Gmail, Calendar).
 
-#### C. Token Economics
-*   **Definition**: LLMs process text in sub-word units called tokens. Notably, accented languages like Vietnamese consume significantly more tokens than English for the same meaning.
-*   **Cost Management**: Processing input tokens is much cheaper than generating output tokens; thus, optimizing response length is critical for controlling API expenses.
+#### 3. Core of Agents and the MCP Protocol
+*   LLMs are highly intelligent but lack the capability to execute tasks directly in the physical world (like scheduling meetings or sending emails).
+*   The **MCP protocol acts as a technical bridge**, allowing the AI to interact with and retrieve data from third-party tools like Jira, Confluence, and Gmail via Actions.
 
-#### D. Specialized Prompting Methods
-*   **Chain-of-Thought (CoT)**: Prompt the AI to explain its step-by-step reasoning logic before showing the final result.
-*   **Self-Consistency**: Run multiple independent reasoning paths in parallel and select the answer with the highest consensus.
-*   **Tree-of-Thoughts (ToT)**: Model reasoning as a decision tree to evaluate and choose optimal analysis branches.
-*   Integrating **RAG** (Retrieval-Augmented Generation) and **Role Prompting**.
+#### 4. Automation Demonstrated via Live Demos
+*   **Automated Data Visualization**: Users can upload raw Excel data, and Amazon Q will automatically process and visualize it into charts without requiring complex database queries.
+*   **Meeting Summary Automation**: The AI records meetings, transcribes audio to text, summarizes key takeaways, and automatically drafts and emails action items to participants via MCP connections.
 
-#### E. Proptimizer Solution Architecture
-Proptimizer is a browser extension that automates prompt optimization, running 100% Serverless on AWS to minimize operating costs:
-*   **Static Distribution**: Uses Amazon S3 for frontend storage combined with Amazon CloudFront as a CDN for global delivery.
-*   **API Orchestration**: Uses Amazon Cognito for identity management, Amazon API Gateway for routing, and AWS Lambda to run backend logic without server maintenance.
-*   **AI Integration & Databases**: Accesses foundation models (Claude, GPT) via Amazon Bedrock, and stores prompt history at high speed using DynamoDB.
-*   **System Monitoring**: Uses Amazon CloudWatch to collect logs and monitor performance.
+#### 5. Security & Compliance Model
+*   Adheres strictly to the AWS Shared Responsibility Model: AWS manages the security of the cloud infrastructure and foundation models, while customers manage access permissions and data security.
 
 ### IV. Acquired Knowledge & Application
 
-#### Prompt Design Principles
-*   Focus on positive instructions (DOs) that guide the AI on what to do, rather than vague negative warnings (DON'Ts).
-*   Optimize prompt layout using clear delimiters (such as `---`, `###`) and split long input files.
-*   Reduce hallucinations by instructing the AI to say "I don't know" when information is missing.
+#### Design Mindset
+*   Technology products must stem from immediate and practical user needs.
+*   AI system design should shift from standard Q&A chat interfaces to action-oriented, autonomous Agents.
 
-#### Cloud System Techniques
-*   Understand the integration methods between AWS Serverless infrastructure and Generative AI models.
-*   Leverage **Amazon Bedrock** as a secure, centralized API gateway to manage connections to multiple foundation model vendors.
-*   Design **DynamoDB** tables optimized for prompt history queries with single-digit millisecond latency.
+#### Infrastructure Knowledge
+*   Mastered the architectural formula: **Agent = LLM + Computation Services (MCP Actions/Functions)**.
+*   Understood the integration flow between AI and external APIs to build complete end-to-end automation.
 
-#### Actions at Work
-*   **Apply the 7-component prompt structure** in daily AI interactions to maximize response quality.
-*   **Reduce Operating Costs**: Refine prompt wording to save unnecessary token consumption.
-*   **Utilize CoT** for source code analysis and code logic reviews.
-*   **Develop Internal Tools**: Plan the creation of internal automation tools utilizing Serverless architectures (S3, Lambda, Bedrock).
+#### Application to Work
+*   **Personal Productivity Boost**: Utilize Amazon Q to quickly analyze raw spreadsheets and export visual charts.
+*   **Automation Development**: Research and build custom MCP servers to integrate the AI assistant with internal tools (Jira, Teams) to automate meeting action-item tracking.
 
 ### V. On-Site Practical Experience
 
-#### Perspective from the Expert
-*   The presentation offered a complete view of combining software engineering with AI prompting, clarifying the development pipeline of practical GenAI integrations.
+#### Learning from Industry Experts
+*   Hai An's presentation was highly inspiring, emphasizing collaboration and confidence when resolving complex client requirements.
 
-#### Visual Exposure
-*   Visualized the execution paths of CoT and ToT techniques through clear structural diagrams.
-*   Grasped the real-world architectural design of the Proptimizer solution deployed on AWS.
+#### Practical Technical Exposure
+*   Observed how natural language queries are parsed into structured system prompts for the AI.
+*   Experienced the real-time interaction capabilities of the MCP protocol with external applications.
 
-#### Key Takeaway
-*   Prompt Engineering is not just about asking questions, but the key to unlocking AI's practical value in daily work.
-*   AWS Serverless is highly suited for AI integrations due to its minimal initial cost (\$0) and seamless scaling capabilities.
+#### Adopting Modern Tools
+*   Gained clear insights into the Amazon Q platform, opening up the possibilities of building custom MCP servers to extend AI features for project-specific tasks.
 
-> The event provided valuable insights, improving my prompt design skills and expanding my mindset for building efficient AI products on the cloud.
+> Overall, the event provided tremendous value in both technical expertise and system architecture, helping me shape the development of smart automation solutions.
+
+![Event Participation Image](/images/4-EventParticipated/event2_picture.jpg)

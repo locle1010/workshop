@@ -1,69 +1,90 @@
 ---
 title: "Event 1"
-date: 2026-05-23
+date: 2026-05-09
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
-# BÀI THU HOẠCH: TỰ ĐỘNG HÓA CÔNG VIỆC VỚI TRỢ LÝ AI AMAZON Q VÀ MCP
+# BÀI THU HOẠCH: AUTOMATED PROMPT ENGINEERING - ENHANCING LLM OUTPUT QUALITY
 
 ### I. Mục tiêu & Định hướng Sự kiện
 
-*   **Giới thiệu giải pháp**: Phổ biến về trợ lý AI **Amazon Q** - công cụ đắc lực do AWS phát triển nhằm hỗ trợ tối đa cho nhóm người dùng cuối (end-user).
-*   **Tối ưu hiệu suất**: Đưa ra lời giải cho bài toán tiết kiệm thời gian, tự động hóa quy trình báo cáo và vận hành doanh nghiệp.
-*   **Làm rõ kỹ thuật**: Phân tích sâu cơ chế hoạt động của mô hình Agent, đồng thời giới thiệu giao thức Model Context Protocol (MCP) giúp AI kết nối trực tiếp với ứng dụng ngoại vi.
-*   **Định hình tư duy**: Khơi dậy tinh thần "product-driven" cho các lập trình viên, hướng tới việc xây dựng các giải pháp giải quyết trực tiếp nhu cầu khách hàng.
+*   **Làm chủ kỹ thuật giao tiếp**: Khai phá nghệ thuật ra lệnh cho AI (Prompting) và những giải pháp cải thiện chất lượng dữ liệu phản hồi từ các mô hình LLM.
+*   **Phân tích lỗi sai**: Chỉ rõ tầm quan trọng của việc xây dựng câu lệnh và những tác động không tốt khi thiết lập prompt sơ sài, thiếu khoa học.
+*   **Trang bị kỹ năng**: Cung cấp bộ khung cấu trúc và kỹ thuật viết prompt từ cơ bản đến nâng cao để tối ưu hóa tương tác với AI.
+*   **Giới thiệu ứng dụng**: Giới thiệu công cụ tự động hóa tối ưu prompt mang tên "Proptimizer" cùng thiết kế hệ thống Serverless trên cloud AWS.
 
 ### II. Diễn giả
 
-*   **Diễn giả**: **Hải An** (Cloud Consultant tại C Pacific Việt Nam).
+*   **Người chia sẻ**: **Nguyễn Tuấn Thịnh** (DevOps/Cloud Engineer thuộc dự án First Cloud AI Journey).
 
 ### III. Điểm nhấn nội dung chuyên môn
 
-#### 1. Nguyên lý thiết kế lấy người dùng làm trung tâm (User-centric)
-*   Công nghệ chỉ đóng vai trò là phương tiện hỗ trợ; giá trị cốt lõi của một sản phẩm nằm ở khả năng giải quyết triệt để nỗi đau (pain point) của người dùng.
-*   Việc ứng dụng AI để tự động hóa khâu xử lý dữ liệu và tạo báo cáo tuần giúp giảm tải công việc cực kỳ hiệu quả cho đội ngũ quản lý.
+#### A. Những tổn thất khi sử dụng Prompt kém chất lượng
+*   **Nội dung hời hợt**: Gửi đi câu lệnh chung chung (Generic prompt) sẽ chỉ nhận lại câu trả lời nông và thiếu giá trị thực tiễn.
+*   **Lãng phí tài chính**: Sử dụng prompt dài dòng, lặp ý gây hao phí token không cần thiết, làm tăng hóa đơn chi phí API.
+*   **Kết quả bất ổn định**: Prompt thiếu rõ ràng khiến AI phản hồi không đồng nhất trong những lần chạy khác nhau.
+*   **Tổn hao thời gian**: Mất nhiều thời gian để chỉnh sửa thủ công và yêu cầu AI sinh lại kết quả, làm giảm đáng kể hiệu suất làm việc.
 
-#### 2. Khả năng tích hợp của Amazon Q
-*   Hệ thống Agent của AWS được thiết kế để liên kết sâu rộng với các nền tảng doanh nghiệp quen thuộc từ **Microsoft** (Word, Teams, Outlook, PowerPoint) cho đến **Google** (Gmail, Calendar).
+#### B. Cấu trúc chuẩn hóa của một câu lệnh (Great Prompt)
+Một prompt chất lượng cao cần được tổ chức chặt chẽ theo bộ khung gồm:
+1.  **Role (Vai trò)**: Thiết lập tư cách cho AI (ví dụ: Chuyên gia phân tích bảo mật).
+2.  **Instruction (Chỉ thị)**: Mô tả chính xác việc AI cần thực hiện.
+3.  **Context (Ngữ cảnh)**: Thông tin nền giúp AI hiểu sâu hơn về bối cảnh tác vụ.
+4.  **Input Data (Dữ liệu đầu vào)**: Nội dung thô cần được xử lý.
+5.  **Output Format (Định dạng đầu ra)**: Yêu cầu về cấu trúc trình bày (JSON, Markdown, Bảng...).
+6.  **Examples (Ví dụ mẫu)**: Đưa ra các mẫu few-shot để AI học theo phong cách mong muốn.
+7.  **Constraints (Ràng buộc)**: Các quy tắc cần tuân thủ (ví dụ: độ dài tối đa, những điều không được phép làm).
 
-#### 3. Bản chất của Agent và Giao thức MCP
-*   Các mô hình LLM thông minh nhưng bị giới hạn ở khả năng thực thi tác vụ trực tiếp ngoài đời thực (như gửi email, đặt lịch).
-*   Giao thức **MCP hoạt động như chiếc cầu nối kỹ thuật**, cho phép AI tương tác và truy xuất dữ liệu trực tiếp từ các hệ thống thứ ba như Jira, Confluence hay Gmail thông qua các hàm hành động (Actions).
+#### C. Bài toán kinh tế Token (Token Economics)
+*   **Định nghĩa**: LLM không xử lý ký tự trực tiếp mà chia nhỏ văn bản thành các token. Đáng chú ý, các ngôn ngữ có dấu như tiếng Việt sẽ tốn nhiều token hơn đáng kể so với tiếng Anh.
+*   **Cơ cấu chi phí**: Chi phí xử lý token đầu vào (Input) thường rẻ hơn rất nhiều so với token đầu ra (Output), nên việc tối ưu hóa nội dung trả về là cực kỳ cần thiết để kiểm soát chi phí.
 
-#### 4. Thực chứng qua Demo thực tế
-*   **Trực quan hóa dữ liệu tự động**: Người dùng chỉ cần tải tệp dữ liệu thô (Excel) lên để Amazon Q tự động xử lý và tạo biểu đồ trực quan mà không cần viết lệnh phân tích phức tạp.
-*   **Tự động hóa sau cuộc họp**: AI ghi âm, chuyển đổi giọng nói thành văn bản, tóm tắt nội dung cuộc họp và tự động gửi email phân công công việc tiếp theo đến từng người tham gia thông qua các kết nối MCP.
+#### D. Các phương pháp Prompting chuyên sâu
+*   **Chain-of-Thought (CoT)**: Kích thích AI giải thích tiến trình suy luận logic từng bước trước khi đưa ra kết quả cuối cùng.
+*   **Self-Consistency**: Cho LLM chạy nhiều luồng suy nghĩ độc lập song song để so sánh và lựa chọn kết quả có độ đồng thuận cao nhất.
+*   **Tree-of-Thoughts (ToT)**: Xây dựng cấu trúc lập luận dạng cây để đánh giá và lựa chọn các nhánh phân tích tối ưu.
+*   Ứng dụng kỹ thuật **RAG** (Retrieval-Augmented Generation) và **Role Prompting**.
 
-#### 5. Cơ chế Bảo mật
-*   Tuân thủ nghiêm ngặt mô hình Trách nhiệm Chia sẻ (Shared Responsibility Model) của AWS: AWS đảm bảo an toàn cho hạ tầng đám mây và các mô hình nền tảng, còn khách hàng quản lý và phân quyền đối với dữ liệu của mình.
+#### E. Thiết kế kiến trúc giải pháp Proptimizer
+Proptimizer là tiện ích mở rộng trên trình duyệt giúp tối ưu hóa prompt tự động, sử dụng toàn bộ mô hình Serverless trên AWS để tiết kiệm tối đa chi phí vận hành:
+*   **Phân phối tĩnh**: Sử dụng Amazon S3 lưu trữ Frontend kết hợp Amazon CloudFront làm CDN phân phối toàn cầu.
+*   **Điều phối API**: Dùng Amazon Cognito để quản lý người dùng, Amazon API Gateway định tuyến và AWS Lambda chạy xử lý backend không cần duy trì máy chủ.
+*   **Xử lý AI & Lưu trữ**: Gọi các mô hình LLM (Claude, GPT) thông qua Amazon Bedrock, lưu trữ lịch sử prompt truy vấn nhanh với DynamoDB.
+*   **Theo dõi hệ thống**: Sử dụng Amazon CloudWatch để ghi nhận log và giám sát hiệu năng.
 
 ### IV. Kiến thức tiếp thu và Khả năng ứng dụng
 
-#### Tư duy phát triển
-*   Sản phẩm công nghệ phải bắt nguồn từ những nhu cầu thực tế và cấp thiết của người dùng.
-*   Cần chuyển dịch tư duy thiết kế AI từ mô hình chat hỏi-đáp thông thường sang các Agent tự hành có tính thực thi cao.
+#### Tư duy thiết kế câu lệnh
+*   Nên tập trung vào các chỉ thị mang tính khẳng định (DOs) để hướng dẫn AI làm gì, thay vì chỉ sử dụng các câu phủ định (DON'Ts) chung chung.
+*   Tối ưu hóa cấu trúc prompt bằng cách sử dụng các ký tự phân tách rõ ràng (như `---`, `###`) và chia nhỏ các tài liệu đầu vào quá dài.
+*   Hạn chế ảo giác (Hallucination) bằng cách cho phép AI báo cáo "Tôi không biết" nếu thông tin bị thiếu hụt.
 
-#### Kiến thức hạ tầng
-*   Nắm vững công thức: **Agent = LLM + Các Action/Function thực thi trên môi trường máy chủ (MCP)**.
-*   Hiểu rõ luồng xử lý tích hợp giữa AI và API bên ngoài để xây dựng các kịch bản tự động hóa đầu cuối.
+#### Kỹ thuật hệ thống đám mây
+*   Hiểu rõ phương pháp tích hợp hạ tầng AWS Serverless với các mô hình Generative AI.
+*   Vận dụng **Amazon Bedrock** làm cổng kết nối tập trung, an toàn để quản lý API đến nhiều nhà cung cấp mô hình khác nhau.
+*   Thiết kế bảng **DynamoDB** tối ưu cho các truy vấn lịch sử prompt với độ trễ siêu thấp dưới 10ms.
 
-#### Định hướng công việc
-*   **Tối ưu hiệu suất cá nhân**: Sử dụng Amazon Q để nhanh chóng phân tích các số liệu thô và xuất báo cáo trực quan mà không cần setup phức tạp.
-*   **Xây dựng giải pháp tự động hóa**: Nghiên cứu xây dựng các MCP Server tùy biến để liên kết AI với các công cụ quản lý dự án nội bộ (Jira, Teams), tự động hóa việc theo dõi công việc sau các buổi họp.
+#### Kế hoạch hành động tại nơi làm việc
+*   **Áp dụng cấu trúc 7 thành phần** vào công việc tương tác hàng ngày với AI để có câu trả lời chất lượng nhất.
+*   **Giảm chi phí vận hành**: Tinh giản tối đa câu chữ của prompt để tiết kiệm lượng token tiêu thụ.
+*   **Ứng dụng kỹ thuật CoT** trong việc phân tích mã nguồn và kiểm tra logic code.
+*   **Thiết kế ứng dụng nội bộ**: Lên kế hoạch xây dựng các tool tự động hóa nội bộ trên nền tảng Serverless (S3, Lambda, Bedrock).
 
 ### V. Góc nhìn thực tế tại sự kiện
 
-#### Học hỏi từ diễn giả thực chiến
-*   Phần chia sẻ đầy nhiệt huyết của anh Hải An đã truyền cảm hứng mạnh mẽ về tinh thần làm việc nhóm và sự tự tin khi giải quyết các bài toán kỹ thuật phức tạp của khách hàng.
+#### Góc nhìn từ kỹ sư chia sẻ
+*   Bài nói chuyện mang lại cái nhìn toàn diện khi kết hợp khéo léo giữa tư duy lập trình hệ thống (Engineering) và nghệ thuật giao tiếp với mô hình AI (Prompting), giúp tôi hiểu rõ quy trình phát triển một sản phẩm GenAI thực tế.
 
-#### Trải nghiệm kỹ thuật thực tế
-*   Quan sát trực tiếp quá trình hệ thống dịch các yêu cầu tự nhiên thành cấu trúc prompt cụ thể giúp AI thực thi đúng nhiệm vụ.
-*   Nhìn nhận trực quan sức mạnh của MCP khi kết nối và tương tác tức thì với các ứng dụng ngoại vi.
+#### Trải nghiệm trực quan
+*   Hình dung rõ nét cách hoạt động của CoT và ToT thông qua các sơ đồ tư duy trực quan.
+*   Nắm bắt được sơ đồ kiến trúc thực tế của giải pháp Proptimizer chạy trên nền tảng đám mây AWS.
 
-#### Ứng dụng công nghệ mới
-*   Hiểu rõ cách thức hoạt động của Amazon Q, từ đó mở rộng tư duy thiết kế các máy chủ MCP tùy chỉnh nhằm mở rộng tính năng của AI theo đặc thù của từng dự án.
+#### Bài học tâm đắc
+*   Prompt Engineering không đơn thuần là đặt câu hỏi, mà là chiếc chìa khóa tối ưu hóa sức mạnh của AI trong công việc.
+*   Mô hình Serverless trên AWS là lựa chọn cực kỳ lý tưởng cho các giải pháp tích hợp AI quy mô nhỏ nhờ chi phí ban đầu gần như bằng 0 và khả năng tự động mở rộng mượt mà.
 
-> Nhìn chung, sự kiện mang lại giá trị lớn cả về mặt kiến thức kỹ thuật lẫn tư duy thiết kế hệ thống, giúp tôi định hình rõ ràng hơn hướng phát triển các giải pháp tự động hóa thông minh trong tương lai.
+> Sự kiện đã mang lại cho tôi những kiến thức vô cùng bổ ích, giúp nâng cao kỹ năng thiết kế câu lệnh và mở ra tư duy xây dựng các sản phẩm AI hiệu quả trên cloud.
 
 ![Hình ảnh tham gia sự kiện](/images/4-EventParticipated/event1_picture.jpg)
+

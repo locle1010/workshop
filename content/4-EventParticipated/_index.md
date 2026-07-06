@@ -6,7 +6,28 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-### [Event 1 - Workflow Automation with Amazon Q and MCP](4.1-Event1/)
+### [Event 1 - Automated Prompt Engineering: Enhancing LLM Output Quality](4.1-Event1/)
+
+&emsp;**Event Name:** FCAJ Meet up
+
+&emsp;**Date & Time:** 09:00, May 09, 2026
+
+&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
+
+&emsp;**Role:** Attendee
+
+#### **Session Highlights:**
+
+1.  **Mind Hacker Topic (Dopamine Gaming):**
+    *   Methods to turn knowledge into a "dopamine gamble" to trick the brain, establishing persistent learning motivation similar to how games and social media function.
+2.  **Mindset & Career Path Topic (Foundation & Integrity):**
+    *   Focusing on unchanging core knowledge in the AI era, combined with integrity and long-term thinking.
+3.  **AI Software Development Topic (BMAD):**
+    *   The structured process of managing AI agents (Build Method for AI Development) to optimize app construction and reduce hallucinations.
+
+---
+
+### [Event 2 - Workflow Automation with Amazon Q and MCP](4.2-Event2/)
 
 &emsp;**Event Name:** FCAJ Community Day
 
@@ -43,27 +64,6 @@ pre: " <b> 4. </b> "
     *   Structural mismatch between traditional banking systems and startup data.
     *   Multi-Agent model and the Virtual Credit Committee architecture.
     *   Control systems (Guardrails), compliance, and ROI analysis.
-
----
-
-### [Event 2 - Automated Prompt Engineering: Enhancing LLM Output Quality](4.2-Event2/)
-
-&emsp;**Event Name:** FCAJ Community Day
-
-&emsp;**Date & Time:** 09:00, May 09, 2026
-
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
-
-&emsp;**Role:** Attendee
-
-#### **Session Highlights:**
-
-1.  **Mind Hacker Topic (Dopamine Gaming):**
-    *   Methods to turn knowledge into a "dopamine gamble" to trick the brain, establishing persistent learning motivation similar to how games and social media function.
-2.  **Mindset & Career Path Topic (Foundation & Integrity):**
-    *   Focusing on unchanging core knowledge in the AI era, combined with integrity and long-term thinking.
-3.  **AI Software Development Topic (BMAD):**
-    *   The structured process of managing AI agents (Build Method for AI Development) to optimize app construction and reduce hallucinations.
 
 ---
 
